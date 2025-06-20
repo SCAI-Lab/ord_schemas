@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EDA Data",
+    "description": "This schema represents EDA waveform segments with associated signal quality and recording timestamps.",
+    "type": "object",
+
+    "definitions": {
+        "time_frame": {
+            "$ref": "time-frame-1.0.json"
+        }
+    },
+
+    "properties": {
+        "eda_episodes": {
+            "description": "EDA waveform samples",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "eda_value": {
+                        "type": "number",
+                        "description": "EDA signal amplitude"
+                    },
+                    "unit": {
+                        "type": "string",
+                        "enum": ["uS"]
+                    },
+                    "signal_quality": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "description": "Signal quality score (0-1)"
+                    },
+                    "eda_time_frame":{
+                        "description": "Timestamp when this sample was recorded",
+                        "allOf": [
+                            {
+                                "$ref": "#/definitions/time_frame"
+                            },
+                            {
+                                "required": [
+                                    "date_time" 
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "required": ["eda_value", "signal_quality", "unit", "eda_time_frame"]
+            }
+        },
+        "effective_time_frame": {
+            "allOf": [
+                {
+                "$ref": "#/definitions/time_frame"
+                },
+                {
+                "required": ["time_interval"]
+                }
+            ]
+        }
+    },
+
+  "required": ["eda_episodes", "effective_time_frame"]
+}

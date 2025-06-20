@@ -1,0 +1,22 @@
+{
+  "eda_episodes": [
+    {
+      "eda_value": 0.45,
+      "unit": "uS",
+      "signal_quality": 0.98,
+      "recorded_time": "2025-06-20T08:00:00Z"
+    },
+    {
+      "eda_value": 0.48,
+      "unit": "uS",
+      "signal_quality": 0.95,
+      "recorded_time": "2025-06-20T08:00:01Z"
+    }
+  ],
+  "effective_time_frame": {
+    "time_interval": {
+      "start_date_time": "2025-06-20T08:00:00Z",
+      "end_date_time": "2025-06-20T08:10:00Z"
+    }
+  }
+}

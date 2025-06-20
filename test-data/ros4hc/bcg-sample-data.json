@@ -1,0 +1,25 @@
+{
+  "bcg": [
+    {
+      "bcg_value": 0.12,
+      "unit": "mV",
+      "bcg_time_frame": {
+        "date_time": "2025-06-13T00:01:00Z"
+      }
+    },
+    {
+      "bcg_value": 0.14,
+      "unit": "mV",
+      "bcg_time_frame": {
+        "date_time": "2025-06-13T00:01:01Z"
+      }
+    }
+  ],
+  "effective_time_frame": {
+    "time_interval": {
+      "start_date_time": "2025-06-13T00:01:00Z",
+      "end_date_time": "2025-06-13T00:01:10Z"
+    }
+  },
+  "error_message": ""
+}

@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMG Data",
+    "description": "This schema represents EMG waveform segments with associated signal quality and recording timestamps.",
+    "type": "object",
+
+    "definitions": {
+        "time_frame": {
+            "$ref": "time-frame-1.0.json"
+        }
+    },
+
+    "properties": {
+        "emg_episodes": {
+            "description": "EMG waveform samples",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "emg_value": {
+                        "type": "number",
+                        "description": "EMG signal amplitude"
+                    },
+                    "unit": {
+                        "type": "string",
+                        "enum": ["µV", "mV"]
+                    },
+                    "signal_quality": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "description": "Signal quality score (0-1)"
+                    },
+                    "emg_time_frame":{
+                        "description": "Timestamp when this sample was recorded",
+                        "allOf": [
+                            {
+                                "$ref": "#/definitions/time_frame"
+                            },
+                            {
+                                "required": [
+                                    "date_time" 
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "required": ["emg_value", "signal_quality", "unit", "emg_time_frame"]
+            }
+        },
+        "effective_time_frame": {
+            "allOf": [
+                {
+                "$ref": "#/definitions/time_frame"
+                },
+                {
+                "required": ["time_interval"]
+                }
+            ]
+        }
+    },
+
+  "required": ["emg_episodes", "effective_time_frame"]
+}

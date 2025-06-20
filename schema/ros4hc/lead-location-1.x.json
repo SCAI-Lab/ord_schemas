@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+    "description": "This schema represents a standard ECG lead location.",
+    "type": "string",
+
+    "references": [
+        {
+        "description": "Standard ECG lead names according to clinical conventions (12-lead and extended leads).",
+        "url": "https://en.wikipedia.org/wiki/Electrocardiography#12-lead_ECG"
+        }
+    ],
+
+    "enum": [
+        "I", "II", "III", 
+        "aVR", "aVL", "aVF",
+        "V1", "V2", "V3", "V4", "V5", "V6",
+        "V1R", "V2R", "V3R", "V4R", "V5R", "V6R"
+    ]
+}
