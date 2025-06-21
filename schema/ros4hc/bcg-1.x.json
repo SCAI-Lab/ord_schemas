@@ -14,44 +14,22 @@
     },
 
     "properties": {
-        "bcg": {
+        "bcg_sensor_readings": {
             "description": "BCG waveform segments",
             "type": "array",
             "items": {
-                "type": "object",
-                "properties": {
-                    "bcg_value": {
-                        "type": "number"
-                    },
-                    "unit": {
-                        "type": "string",
-                        "enum": ["mV", "uV", "V"]
-                    },
-                    "bcg_time_frame":{
-                        "allOf": [
-                            {
-                                "$ref": "#/definitions/time_frame"
-                            },
-                            {
-                                "required": [
-                                    "date_time" 
-                                ]
-                            }
-                        ]
-                    }
-                },
-                "required": [
-                    "bcg_value",
-                    "unit",
-                    "bcg_time_frame"
-                ]
+                "type": "number"
             }
+        },
+        "unit": {
+            "type": "string",
+            "enum": ["mV", "uV", "V"]
         },
         "error_message": {
             "type": "string"
         },
         "effective_time_frame": {
-            "description": "The date-time at which, or time interval during which the measurement is asserted as being valid.",
+            "description": "The time interval at which, or time interval during which the measurement is asserted as being valid.",
             "allOf": [
                 {
                     "$ref": "#/definitions/time_frame"
@@ -65,7 +43,8 @@
         }
     },
     "required": [
-        "bcg",
+        "bcg_sensor_readings",
+        "unit",
         "effective_time_frame"
     ]
 }

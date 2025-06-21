@@ -1,0 +1,98 @@
+{
+    "header": {
+        "uuid": "bcg-20250620T120000Z-123456-LLMgenerated",
+        "source_creation_date_time": "2025-06-20T12:00:00Z",
+        "schema_id": {
+            "namespace": "ros4hc",
+            "name": "bcg",
+            "version": "1.0"
+        },
+        "acquisition_rate": {
+            "value": 60,
+            "unit": "Hz"
+        },
+        "modality": "sensed",
+        "device_identity": {
+            "device_manufacturer": "SensoTech",
+            "device_name": "SensoMat Pro",
+            "device_type": "Ballistocardiogram Sensor Mat",
+            "device_serial_number": "SN-B1234567"
+        },
+
+        "environmental_requirements": {
+            "battery_level": {
+                "value": 0.85,
+                "unit": "%"
+            },
+            "minimal_operation_temperature": {
+                "value": 10.0,
+                "unit": "°C"
+            },
+            "maximal_operation_temperature": {
+                "value": 40.0,
+                "unit": "°C"
+            },
+            "maximal_relative_humidity": {
+                "value": 0.9,
+                "unit": "%"
+            },
+            "minimal_atmospheric_pressure": {
+                "value": 0.8,
+                "unit": "atm"
+            },
+            "maximal_atmospheric_pressure": {
+                "value": 1.2,
+                "unit": "atm"
+            }
+        },
+        "measurement_specs": {
+            "measuring_unit": "mV",
+            "sampling_frequency_hz": {
+                "value": 100,
+                "unit": "Hz"
+            },
+            "resolution": {
+                "value": 0.001,
+                "unit": "mV"
+            },
+            "accuracy": {
+                "value": 0.95,
+                "unit": "ratio"
+            },
+            "max_range": {
+                "value": 10.0,
+                "unit": "mV"
+            },
+            "min_range": {
+                "value": -10.0,
+                "unit": "mV"
+            }
+        },
+
+        "bcg_info": {
+            "number_of_sensors": 4,
+            "sensor_locations": [
+                "thorax",
+                "abdomen",
+                "lower back",
+                "upper back"
+            ],
+            "sensing_direction": "dorso-ventral",
+            "sensing_modality": "piezoelectric-films",
+            "measurement_system": "Starr BCG"
+        }
+    },
+    "body": {
+        "bcg_sensor_readings": [
+            0.02, 0.04, 0.01, -0.01, -0.03, 0.00, 0.02, 0.03, -0.02, 0.01
+            ],
+            "unit": "mV",
+            "error_message": "",
+            "effective_time_frame": {
+            "time_interval": {
+                "start_date_time": "2025-06-20T12:00:00Z",
+                "end_date_time": "2025-06-20T12:00:10Z"
+            }
+        }
+    }
+}

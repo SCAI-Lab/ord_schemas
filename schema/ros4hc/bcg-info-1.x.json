@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+    "title": "BCG Data Series",
+    "type": "object",
+    "description": "This schema represents a bcg data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "header": {
+            "$ref": "sensor-device-header-1.x.json"
+        },
+        
+        "bcg_body": {
+            "$ref": "bcg-1.x.json"
+        }
+    },
+
+
+    "properties": {
+        "header": {
+            "description": "The header of the data point.",
+            "type":"object",
+            "allOf": [
+                {"$ref": "#/definitions/header"},
+                {
+                    "type": "object",
+                    "properties": {
+                        "bcg_info": {
+                            "type": "object",
+                            "properties": {
+                                "number_of_sensors": {
+                                    "type": "number"
+                                },
+
+                                "sensor_locations": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+
+                                "sensing_direction": {
+                                    "type": "string"
+                                },
+
+                                "sensing_modality": {
+                                    "type": "string"
+                                },
+
+                                "measurement_system": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "body": {
+            "$ref": "#/definitions/bcg_body"
+        }
+    },
+
+    "required": [
+        "header",
+        "body"
+    ]
+}

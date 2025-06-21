@@ -7,58 +7,52 @@
     "definitions": {
         "time_frame": {
             "$ref": "time-frame-1.0.json"
+        },
+        "time_interval": {
+            "$ref": "time-interval-1.0.json"
         }
     },
 
     "properties": {
-        "ecg_episodes": {
-            "description": "ECG waveform samples",
+        "ecg_lead_data": {
+            "description": "EDA signal amplitude",
             "type": "array",
             "items": {
-                "type": "object",
-                "properties": {
-                    "ecg_value": {
-                        "type": "number",
-                        "description": "EDA signal amplitude"
-                    },
-                    "unit": {
-                        "type": "string",
-                        "enum": ["µV", "mV"]
-                    },
-                    "signal_quality": {
-                        "type": "number",
-                        "minimum": 0,
-                        "maximum": 1,
-                        "description": "Signal quality score (0-1)"
-                    },
-                    "ecg_time_frame":{
-                        "description": "Timestamp when this sample was recorded",
-                        "allOf": [
-                            {
-                                "$ref": "#/definitions/time_frame"
-                            },
-                            {
-                                "required": [
-                                    "date_time" 
-                                ]
-                            }
-                        ]
-                    }
-                },
-                "required": ["ecg_value", "signal_quality", "unit", "ecg_time_frame"]
+                "type": "number"
             }
         },
+
+        "signal_quality": {
+            "description": "Signal quality score (0-1)",
+            "type:": "array",
+            "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+            }
+        },
+        
+        "unit": {
+            "type": "string",
+            "enum": ["µV", "mV"]
+        },        
+
         "effective_time_frame": {
             "allOf": [
                 {
-                "$ref": "#/definitions/time_frame"
+                    "$ref": "#/definitions/time_frame"
                 },
                 {
-                "required": ["time_interval"]
+                    "required": ["time_interval"]
                 }
             ]
         }
     },
 
-  "required": ["ecg_episodes", "effective_time_frame"]
+    "required": [
+        "ecg_lead_data", 
+        "signal_quality", 
+        "unit",
+        "effective_time_frame"
+    ]
 }

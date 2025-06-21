@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ECG Leads",
+    "description": "This schema represents ECG Leads with each associated signal quality and recording timestamps.",
+    "type": "object",
+
+    "definitions": {
+        "time_frame": {
+            "$ref": "time-frame-1.0.json"
+        },
+        "time_interval": {
+            "$ref": "time-interval-1.0.json"
+        },
+        "ecg_lead": {
+            "$ref": "ecg-lead-1.x.json"
+        }
+        
+    },
+
+    "properties": {
+        "ecg_leads_data": {
+            "description": "Array of ECG lead measurements",
+            "type": "object"
+        },
+
+        "effective_time_frame": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/time_frame"
+                },
+                {
+                    "required": ["time_interval"]
+                }
+            ]
+        }
+    },
+
+    "required": [
+        "ecg_leads_data", 
+        "effective_time_frame"
+    ]
+}
