@@ -11,11 +11,15 @@
         },
         
         "ecg_body": {
-            "$ref": "ecg-lead-1.x.json"
+            "$ref": "ecg-1.x.json"
         },
 
         "lead_location_enum": {
             "$ref": "lead-location-1.x.json"
+        },
+
+        "filter": {
+            "$ref": "healthcare-filterbase-1.x.json"
         }
     },
 
@@ -26,20 +30,78 @@
             "type":"object",
             "allOf": [
                 {"$ref": "#/definitions/header"},
+
+                {"$ref": "#/definitions/filter"},
+
                 {
                     "type": "object",
                     "properties": {
                         "ecg_info": {
                             "type": "object",
                             "properties": {
-                                "lead_number": {
-                                    "type": "number"
+
+                                "sampling_frequency": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/definitions/unit_value"
+                                        },
+                                        { 
+                                            "type": "object",
+                                            "properties": {
+                                                "unit": {
+                                                    "enum": [
+                                                        "Hz"
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    ]
                                 },
 
-                                "location_lead": {
+                                "window_size_samples": {
+                                    "description": "Number of samples per ECG.msg",
+                                    "type": "integer"
+                                },
+                            
+                                "quality_window_size_samples": {
+                                    "description": "Number of samples per quality value",
+                                    "type": "integer"
+                                },
+
+                                "units": {
+                                    "type": "string",
+                                    "enum": ["Unknown", "mV", "uV", "Counts"]
+                                },
+
+                                "gain": {
+                                    "type": "number",
+                                    "description": "Multiplicative factor (e.g., µV/count); set to 1.0 if signal is already scaled"
+                                },
+
+                                "adc_resolution": {
+                                    "description": "Bits (e.g. 12, 16)",
+                                    "type": "integer"
+                                },
+
+                                "electrode_placement": {
+                                    "description": "Support multiple electrode placements",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Unknown", "Placement Limb", "Wrist Ankle", "Chest", "Torso", "Abdomen", "Back", "Ear", "Neck", "Left Arm", "Right Arm", "Left Leg", "Right Leg", "Custom"
+                                        ]
+                                    }
+                                },
+
+                                "lead_type": {
                                     "$ref": "#/definitions/lead_location_enum"
                                 }
-                            }
+                            },
+
+                            "required": [
+                                "sampling_frequency", "units"
+                            ]
                         }
                     }
                 }

@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ECG Data",
-    "description": "This schema represents ECG waveform segments with associated signal quality and recording timestamps.",
+    "title": "EOG Data",
+    "description": "This schema represents EOG waveform segments with associated signal quality and recording timestamps.",
     "type": "object",
 
     "definitions": {
@@ -14,8 +14,21 @@
     },
 
     "properties": {
-        "ecg_lead_data": {
-            "description": "EDA signal amplitude",
+        "session_id": {
+            "description": "match EOGInfo's session_id (if used)",
+            "type": "string"
+        },
+
+        "channel_size": {
+            "type": "integer"
+        },
+
+        "sample_size": {
+            "type": "integer"
+        },
+        
+        "eog": {
+            "description": "Raw or filtered EOG values",
             "type": "array",
             "items": {
                 "type": "number"
@@ -23,19 +36,14 @@
         },
 
         "signal_quality": {
-            "description": "Signal quality score (0-1)",
-            "type:": "array",
+            "description": "From 0 (poor) to 1 [%]",
+            "type": "array",
             "items": {
                 "type": "number",
-                "minimum": 0,
-                "maximum": 1
+                "maximum": 1,
+                "minimum": 0
             }
         },
-        
-        "unit": {
-            "type": "string",
-            "enum": ["µV", "mV"]
-        },        
 
         "effective_time_frame": {
             "allOf": [
@@ -50,9 +58,8 @@
     },
 
     "required": [
-        "ecg_lead_data", 
+        "eog", 
         "signal_quality", 
-        "unit",
         "effective_time_frame"
     ]
 }

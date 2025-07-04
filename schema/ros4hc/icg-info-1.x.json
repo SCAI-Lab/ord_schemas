@@ -1,21 +1,25 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
 
-    "title": "BCG Data Series",
+    "title": "ICGInfo Data Series",
     "type": "object",
-    "description": "This schema represents a bcg data series, i.e., an array of measures that share the same header.",
+    "description": "This schema represents a icg data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
         "header": {
             "$ref": "sensor-device-header-1.x.json"
         },
         
-        "bcg_body": {
-            "$ref": "bcg-1.x.json"
+        "icg_body": {
+            "$ref": "icg-1.x.json"
         },
 
         "filter": {
             "$ref": "healthcare-filterbase-1.x.json"
+        },
+
+        "unit_value": {
+            "$ref": "unit-value-1.0.json"
         }
     },
 
@@ -27,19 +31,14 @@
             "allOf": [
                 {"$ref": "#/definitions/header"},
 
-
                 {"$ref": "#/definitions/filter"},
 
                 {
                     "type": "object",
                     "properties": {
-                        "bcg_info": {
+                        "icg_info": {
                             "type": "object",
                             "properties": {
-
-                                "session_id": {
-                                    "type": "string"
-                                },
 
                                 "sampling_frequency": {
                                     "allOf": [
@@ -60,7 +59,7 @@
                                 },
 
                                 "window_size_samples": {
-                                    "description": "Number of samples per BCG.msg",
+                                    "description": "Number of samples per ICG.msg",
                                     "type": "integer"
                                 },
                             
@@ -71,7 +70,7 @@
 
                                 "units": {
                                     "type": "string",
-                                    "enum": ["Unknown", "mV", "uV", "Counts", "M/s2", "Newton"]
+                                    "enum": ["Unknown", "Ohms", "MOhms", "Counts"]
                                 },
 
                                 "gain": {
@@ -84,51 +83,37 @@
                                     "type": "integer"
                                 },
 
-                                "number_of_sensors": {
-                                    "description": "Number of sensors used for measurement",
-                                    "type": "integer"
+                                "electrode_placement": {
+                                    "description": "Support multiple electrode placements",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": ["Unknown", "Chest", "Back", "Left Arm", "Right Arm", "Left Leg", "Right Leg", "Neck", "Abdomen", "Custom"]
+                                    }
                                 },
 
-
-                                "sensor_placements": {
-                                    "description": "Sensor Placements",
+                                "lead_type": {
                                     "type": "string",
-                                    "enum": [
-                                        "Chest", "Back", "Mattress", "Chair", "Feet", "Wrist", "Arm", "Desk", "Clothing", "Custom"
-                                    ]
+                                    "enum": ["Unknown", "Transthoracic", "Four Electrode", "Six Electrode", "Spot", "Custom"]
                                 },
 
-                                "sensing_direction": {
-                                    "description": "Axis along which BCG is measured",
+                                "technique": {
                                     "type": "string",
-                                    "enum": [
-                                        "Dorso Ventral", "Longitudinal", "Medio Lateral", "Unkown"
-                                    ]
-                                },
-
-                                "sensing_modality": {
-                                    "description": "Type of Sensor used",
-                                    "type": "string",
-                                    "enum": [
-                                        "Piezoelectric Film", "Forceplate", "Accelerometer", "Piezoelectric crystal", "Unkown"
-                                    ]
-                                },
-
-                                "measurement_system": {
-                                    "description": "System Type",
-                                    "type": "string",
-                                    "enum": [
-                                        "Starr", "Nickerson", "Dock", "Other", "Unknown"
-                                    ]
+                                    "enum": ["Unknown", "Tetrapolar", "Octapolar", "Custom"]
                                 }
-                            }
+                            },
+
+                            "required": [
+                                "sampling_frequency", "units"
+                            ]
                         }
                     }
                 }
             ]
         },
+
         "body": {
-            "$ref": "#/definitions/bcg_body"
+            "$ref": "#/definitions/icg_body"
         }
     },
 

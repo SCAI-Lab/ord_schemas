@@ -1,0 +1,7 @@
+There are some inconsistencies in the Ros4HC messages as well for the headers. 
+
+- EEGInfo.msg uses "Signal mode" which is the same as "Electrode Type" referred in EDAInfo. Hence, we use the first one for all schemas.
+
+- There are multiple sampling frequencies, and units in both deviceInfo and specific signal info message. A better distinguishing between both is needed, or remove one duplicate.
+
+- Some parts of the signal's header is the same for all signals, we can summarize them in one specific section, e.g. sampling_info. 
