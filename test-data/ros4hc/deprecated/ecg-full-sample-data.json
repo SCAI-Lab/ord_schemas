@@ -1,0 +1,77 @@
+{
+    "header": {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000-LLMGenerated",
+        "schema_id": "ecg-lead-1.x",
+        "source_creation_date_time": "2025-06-21T14:30:00Z",
+        "modality": "sensed",
+        "acquisition_rate": {
+            "value": 250,
+            "unit": "Hz"
+        },
+        "external_datasheets": [
+        {
+            "datasheet_type": "hardware",
+            "datasheet_reference": "https://example.com/devices/ecg-sensor-3000"
+        }
+        ],
+        "device_identity": {
+            "device_manufacturer": "HealthTech Inc.",
+            "device_name": "ECG Sensor 3000",
+            "device_type": "wearable",
+            "device_serial_number": "HTI-ECG-987654"
+        },
+        "environmental_requirements": {
+            "battery_level": {
+                "value": 85,
+                "unit": "%"
+            },
+            "minimal_operation_temperature": {
+                "value": -5,
+                "unit": "°C"
+            },
+            "maximal_operation_temperature": {
+                "value": 45,
+                "unit": "°C"
+            },
+            "maximal_relative_humidity": {
+                "value": 95,
+                "unit": "%"
+            },
+            "minimal_atmospheric_pressure": {
+                "value": 0.8,
+                "unit": "atm"
+            },
+            "maximal_atmospheric_pressure": {
+                "value": 1.2,
+                "unit": "atm"
+            }
+        },
+        "measurement_specs": {
+            "measuring_unit": "µV",
+            "sampling_frequency_hz": 250,
+            "resolution": 0.1,
+            "accuracy": 0.98,
+            "max_range": 5000,
+            "min_range": -5000
+        },
+        "ecg_info": {
+            "lead_number": 1,
+            "location_lead": "II"
+        }
+    },
+
+    "body": {
+        "ecg_lead_data": [
+            120.4, 118.9, 119.7, 122.1, 121.0, 120.8
+            ],
+        "signal_quality": [
+            1.0, 0.99, 0.98, 1.0, 0.97, 1.0
+            ],
+        "effective_time_frame": {
+            "time_interval": {
+                "start_date_time": "2025-06-21T14:30:00Z",
+                "end_date_time": "2025-06-21T14:30:02Z"
+            }
+        }
+    }
+}

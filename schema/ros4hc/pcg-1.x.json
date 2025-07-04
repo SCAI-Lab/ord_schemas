@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "BCG Data",
-    "description": "This schema represents bcg waveform data from a specific lead with signal quality and temporal context",
+    "title": "PPG Data",
+    "description": "This schema represents PPG waveform data from a specific lead with signal quality and temporal context",
     "type": "object",
     
     "definitions": {
@@ -15,7 +15,7 @@
 
     "properties": {
         "session_id": {
-            "description": "match BCGInfo's session_id (if used)",
+            "description": "match PPGInfo's session_id (if used)",
             "type": "string"
         },
 
@@ -23,8 +23,20 @@
             "type": "integer"
         },
 
-        "bcg": {
-            "description": "Raw or filtered BCG values",
+        "wavelength_size": {
+            "type": "integer"
+        },
+
+        "ac_component": {
+            "type": "number"
+        },
+
+        "dc_component" : {
+            "type": "number"
+        },
+
+        "ppg": {
+            "description": "Raw or filtered PPF values",
             "type": "array",
             "items": {
                 "type": "number"
@@ -56,7 +68,7 @@
         }
     },
     "required": [
-        "bcg",
+        "ppg",
         "signal_quality",
         "effective_time_frame"
     ]

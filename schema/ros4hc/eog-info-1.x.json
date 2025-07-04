@@ -1,21 +1,25 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
 
-    "title": "BCG Data Series",
+    "title": "EOGInfo Data Series",
     "type": "object",
-    "description": "This schema represents a bcg data series, i.e., an array of measures that share the same header.",
+    "description": "This schema represents a eog data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
         "header": {
             "$ref": "sensor-device-header-1.x.json"
         },
         
-        "bcg_body": {
-            "$ref": "bcg-1.x.json"
+        "eog_body": {
+            "$ref": "eog-1.x.json"
         },
 
         "filter": {
             "$ref": "healthcare-filterbase-1.x.json"
+        },
+
+        "unit_value": {
+            "$ref": "unit-value-1.0.json"
         }
     },
 
@@ -27,19 +31,14 @@
             "allOf": [
                 {"$ref": "#/definitions/header"},
 
-
                 {"$ref": "#/definitions/filter"},
 
                 {
                     "type": "object",
                     "properties": {
-                        "bcg_info": {
+                        "eog_info": {
                             "type": "object",
                             "properties": {
-
-                                "session_id": {
-                                    "type": "string"
-                                },
 
                                 "sampling_frequency": {
                                     "allOf": [
@@ -60,7 +59,7 @@
                                 },
 
                                 "window_size_samples": {
-                                    "description": "Number of samples per BCG.msg",
+                                    "description": "Number of samples per EOG.msg",
                                     "type": "integer"
                                 },
                             
@@ -71,7 +70,7 @@
 
                                 "units": {
                                     "type": "string",
-                                    "enum": ["Unknown", "mV", "uV", "Counts", "M/s2", "Newton"]
+                                    "enum": ["Unknown", "uV", "mV", "Counts"]
                                 },
 
                                 "gain": {
@@ -84,51 +83,67 @@
                                     "type": "integer"
                                 },
 
-                                "number_of_sensors": {
-                                    "description": "Number of sensors used for measurement",
-                                    "type": "integer"
+                                "electrode_placement": {
+                                    "description": "Support multiple electrode placements",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": ["Unknown", "Left Eye", "Right Eye", "Forehead", "Temple Left", "Temple Right", "Above Eye", "Below Eye", "Custom"]
+                                    }
                                 },
 
-
-                                "sensor_placements": {
-                                    "description": "Sensor Placements",
+                                "lead_type": {
                                     "type": "string",
-                                    "enum": [
-                                        "Chest", "Back", "Mattress", "Chair", "Feet", "Wrist", "Arm", "Desk", "Clothing", "Custom"
+                                    "enum": ["Unknown", "Bipolar Horizontal", "Bipolar Vertical", "Unipolar", "Corneal Retinal", "Custom"]
+                                },
+
+                                "signal_mode": {
+                                    "type": "string",
+                                    "enum": ["Unknown", "Surface", "Bipolar", "Unipolar", "Corneal Retinal", "Intracular", "Derived", "Custom"]
+                                },
+
+                                "lightsource": {
+                                    "type": "string",
+                                    "enum": ["Unknown", "Tungsten", "Halogen", "LED", "Fluorescent", "Sunlight", "Custom"]
+                                },
+
+                                "gazefield_background_light_brightness": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/definitions/unit_value"
+                                        },
+                                        { 
+                                            "type": "object",
+                                            "properties": {
+                                                "unit": {
+                                                    "enum": [
+                                                        "cd/m^2"
+                                                    ]
+                                                }
+                                            }
+                                        }
                                     ]
                                 },
 
-                                "sensing_direction": {
-                                    "description": "Axis along which BCG is measured",
-                                    "type": "string",
-                                    "enum": [
-                                        "Dorso Ventral", "Longitudinal", "Medio Lateral", "Unkown"
-                                    ]
-                                },
-
-                                "sensing_modality": {
-                                    "description": "Type of Sensor used",
-                                    "type": "string",
-                                    "enum": [
-                                        "Piezoelectric Film", "Forceplate", "Accelerometer", "Piezoelectric crystal", "Unkown"
-                                    ]
-                                },
-
-                                "measurement_system": {
-                                    "description": "System Type",
-                                    "type": "string",
-                                    "enum": [
-                                        "Starr", "Nickerson", "Dock", "Other", "Unknown"
-                                    ]
+                                "length_light_dark_phase" : {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "number"
+                                    }
                                 }
-                            }
+                            },
+
+                            "required": [
+                                "sampling_frequency", "units"
+                            ]
                         }
                     }
                 }
             ]
         },
+
         "body": {
-            "$ref": "#/definitions/bcg_body"
+            "$ref": "#/definitions/eog_body"
         }
     },
 

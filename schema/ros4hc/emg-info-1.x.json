@@ -1,17 +1,17 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
 
-    "title": "BCG Data Series",
+    "title": "EMGInfo Data Series",
     "type": "object",
-    "description": "This schema represents a bcg data series, i.e., an array of measures that share the same header.",
+    "description": "This schema represents a emg data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
         "header": {
             "$ref": "sensor-device-header-1.x.json"
         },
         
-        "bcg_body": {
-            "$ref": "bcg-1.x.json"
+        "emg_body": {
+            "$ref": "emg-1.x.json"
         },
 
         "filter": {
@@ -27,19 +27,14 @@
             "allOf": [
                 {"$ref": "#/definitions/header"},
 
-
                 {"$ref": "#/definitions/filter"},
 
                 {
                     "type": "object",
                     "properties": {
-                        "bcg_info": {
+                        "emg_info": {
                             "type": "object",
                             "properties": {
-
-                                "session_id": {
-                                    "type": "string"
-                                },
 
                                 "sampling_frequency": {
                                     "allOf": [
@@ -60,7 +55,7 @@
                                 },
 
                                 "window_size_samples": {
-                                    "description": "Number of samples per BCG.msg",
+                                    "description": "Number of samples per EMG.msg",
                                     "type": "integer"
                                 },
                             
@@ -71,7 +66,7 @@
 
                                 "units": {
                                     "type": "string",
-                                    "enum": ["Unknown", "mV", "uV", "Counts", "M/s2", "Newton"]
+                                    "enum": ["Unknown", "uV", "mV", "Counts"]
                                 },
 
                                 "gain": {
@@ -84,51 +79,42 @@
                                     "type": "integer"
                                 },
 
-                                "number_of_sensors": {
-                                    "description": "Number of sensors used for measurement",
-                                    "type": "integer"
+                                "electrode_placement": {
+                                    "description": "Support multiple electrode placements",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": ["Unknown", "Biceps", "Triceps", "Forearm", "Calf", "Back", "Abdomen", "Quadriceps", "Hamstring", "Face", "Neck", "Custom"]
+                                    }
                                 },
 
-
-                                "sensor_placements": {
-                                    "description": "Sensor Placements",
+                                "electrode_type": {
                                     "type": "string",
-                                    "enum": [
-                                        "Chest", "Back", "Mattress", "Chair", "Feet", "Wrist", "Arm", "Desk", "Clothing", "Custom"
-                                    ]
+                                    "enum": ["Unknown", "Surface", "Needle", "Wire", "Interferential", "Custom"]
                                 },
 
-                                "sensing_direction": {
-                                    "description": "Axis along which BCG is measured",
+                                "external_device": {
                                     "type": "string",
-                                    "enum": [
-                                        "Dorso Ventral", "Longitudinal", "Medio Lateral", "Unkown"
-                                    ]
+                                    "enum": ["Unknown", "TENS", "FES", "EMG Trigger", "Custom"]
                                 },
 
-                                "sensing_modality": {
-                                    "description": "Type of Sensor used",
+                                "signal_mode": {
                                     "type": "string",
-                                    "enum": [
-                                        "Piezoelectric Film", "Forceplate", "Accelerometer", "Piezoelectric crystal", "Unkown"
-                                    ]
-                                },
-
-                                "measurement_system": {
-                                    "description": "System Type",
-                                    "type": "string",
-                                    "enum": [
-                                        "Starr", "Nickerson", "Dock", "Other", "Unknown"
-                                    ]
+                                    "enum": ["Unknown", "Surface", "Intramuscular", "Custom"]
                                 }
-                            }
+                            },
+
+                            "required": [
+                                "sampling_frequency", "units"
+                            ]
                         }
                     }
                 }
             ]
         },
+
         "body": {
-            "$ref": "#/definitions/bcg_body"
+            "$ref": "#/definitions/emg_body"
         }
     },
 

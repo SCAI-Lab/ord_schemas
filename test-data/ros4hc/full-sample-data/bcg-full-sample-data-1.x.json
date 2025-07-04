@@ -1,0 +1,91 @@
+{
+    "header": {
+        "uuid": "d4c10ef2-babc-4f2d-b7f5-b05a3c6151a7",
+        "schema_id": {
+            "namespace": "org.example.health",
+            "name": "bcg",
+            "version": "1.0"
+        },
+        "source_creation_date_time": "2025-07-04T12:00:00Z",
+        "modality": "sensed",
+        "acquisition_rate": {
+            "value": 100,
+            "unit": "Hz"
+        },
+        "device_identity": {
+            "device_manufacturer": "BioSensor Inc.",
+            "device_name": "BCG-Monitor 2000",
+            "device_type": "BedSensor",
+            "device_serial_number": "BS2000-XYZ123"
+        },
+        "environmental_requirements": {
+            "battery_level": {
+                "value": 85,
+                "unit": "%"
+            },
+            "minimal_operation_temperature": {
+                "value": 10,
+                "unit": "°C"
+            },
+            "maximal_operation_temperature": {
+                "value": 40,
+                "unit": "°C"
+            },
+            "maximal_relative_humidity": {
+                "value": 90,
+                "unit": "%"
+            },
+            "minimal_atmospheric_pressure": {
+                "value": 0.8,
+                "unit": "atm"
+            },
+            "maximal_atmospheric_pressure": {
+                "value": 1.2,
+                "unit": "atm"
+            }
+        },
+        "measurement_specs": {
+            "measuring_unit": "mV",
+            "sampling_frequency_hz": 100,
+            "resolution": 0.01,
+            "accuracy": 0.95,
+            "max_range": 5,
+            "min_range": -5
+        },
+        "bcg_info": {
+            "session_id": "bcg-session-20250704-001",
+            "sampling_frequency": {
+                "value": 100,
+                "unit": "Hz"
+            },
+            "window_size_samples": 10,
+            "quality_window_size_samples": 10,
+            "units": "mV",
+            "gain": 2.0,
+            "adc_resolution": 16,
+            "number_of_sensors": 3,
+            "sensor_placements": "Mattress",
+            "sensing_direction": "Dorso Ventral",
+            "sensing_modality": "Piezoelectric Film",
+            "measurement_system": "Starr"
+        }
+    },
+    "body": {
+        "session_id": "bcg-session-20250704-001",
+        "sample_size": 10,
+        "bcg": [
+            0.023, 0.045, 0.030, 0.025, 0.050,
+            0.055, 0.048, 0.052, 0.049, 0.051
+        ],
+        "signal_quality": [
+            0.95, 0.96, 0.93, 0.94, 0.97,
+            0.96, 0.92, 0.94, 0.95, 0.96
+        ],
+        "effective_time_frame": {
+            "time_interval": {
+                "start_date_time": "2025-07-04T12:00:00Z",
+                "end_date_time": "2025-07-04T12:00:01Z"
+            }
+        }
+    }
+}
