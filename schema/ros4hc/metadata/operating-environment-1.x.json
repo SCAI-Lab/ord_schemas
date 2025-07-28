@@ -1,0 +1,59 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://w3id.org/ieee/ros4hc-schema/operating_environment.json",
+    "title": "Operating environment of an device Metadata",
+    "description": "This schema represents the metadata of an device and its operating environment",
+    "type": "object",
+    "definitions": {
+        "unit_value": {
+            "$ref": "unit-value-1.x.json"
+        },
+        "min_max_value": {
+            "$ref": "min-max-unit-value-1.x.json"
+        }
+    },
+    "properties": {
+        "battery_level": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/unit_value"
+                },
+                { 
+                    "type": "object",
+                    "properties": {
+                        "unit": {
+                            "enum": [
+                                "%"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "operation_temperature": {
+            "$ref": "#/definitions/min_max_value"
+        },
+        "minimal_atmospheric_pressure": { 
+            "allOf": [
+                {
+                    "$ref": "#/definitions/unit_value"
+                },
+                { 
+                    "type": "object",
+                    "properties": {
+                        "unit": {
+                            "enum": [
+                                "atm"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "atmospheric_pressure": {
+            "$ref": "#/definitions/min_max_value"
+        }
+    },
+    "required": [
+    ]
+}

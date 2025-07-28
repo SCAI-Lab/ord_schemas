@@ -6,16 +6,17 @@
     "description": "This schema represents a bcg data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
-        "header": {
-            "$ref": "sensor-device-header-1.x.json"
+        "device-info": {
+            "$ref": "device-info-1.x.json"
         },
-        
-        "bcg_body": {
-            "$ref": "bcg-1.x.json"
+        "default-header": {
+            "$ref": "ord-default-header-1.x.json"
         },
-
         "filter": {
             "$ref": "healthcare-filterbase-1.x.json"
+        },
+        "bcg_body": {
+            "$ref": "bcg-1.x.json"
         }
     },
 
@@ -25,76 +26,22 @@
             "description": "The header of the data point.",
             "type":"object",
             "allOf": [
-                {"$ref": "#/definitions/header"},
-
-
+                {"$ref": "#/definitions/default-header"},
+                {"$ref": "#/definitions/device-info"},
                 {"$ref": "#/definitions/filter"},
 
                 {
                     "type": "object",
                     "properties": {
-                        "bcg_info": {
+                        "sensor_configuration": {
                             "type": "object",
                             "properties": {
 
-                                "session_id": {
-                                    "type": "string"
-                                },
-
-                                "sampling_frequency": {
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/definitions/unit_value"
-                                        },
-                                        { 
-                                            "type": "object",
-                                            "properties": {
-                                                "unit": {
-                                                    "enum": [
-                                                        "Hz"
-                                                    ]
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-
-                                "window_size_samples": {
-                                    "description": "Number of samples per BCG.msg",
-                                    "type": "integer"
-                                },
-                            
-                                "quality_window_size_samples": {
-                                    "description": "Number of samples per quality value",
-                                    "type": "integer"
-                                },
-
-                                "units": {
-                                    "type": "string",
-                                    "enum": ["Unknown", "mV", "uV", "Counts", "M/s2", "Newton"]
-                                },
-
-                                "gain": {
-                                    "type": "number",
-                                    "description": "Multiplicative factor (e.g., µV/count); set to 1.0 if signal is already scaled"
-                                },
-
-                                "adc_resolution": {
-                                    "description": "Bits (e.g. 12, 16)",
-                                    "type": "integer"
-                                },
-
-                                "number_of_sensors": {
-                                    "description": "Number of sensors used for measurement",
-                                    "type": "integer"
-                                },
-
-
-                                "sensor_placements": {
+                                "sensor_placement": {
                                     "description": "Sensor Placements",
                                     "type": "string",
                                     "enum": [
-                                        "Chest", "Back", "Mattress", "Chair", "Feet", "Wrist", "Arm", "Desk", "Clothing", "Custom"
+                                        "Unknown", "Chest", "Back", "Mattress", "Chair", "Feet", "Wrist", "Arm", "Desk", "Clothing", "Custom"
                                     ]
                                 },
 
@@ -102,7 +49,7 @@
                                     "description": "Axis along which BCG is measured",
                                     "type": "string",
                                     "enum": [
-                                        "Dorso Ventral", "Longitudinal", "Medio Lateral", "Unkown"
+                                        "Dorso Ventral", "Longitudinal", "Medio Lateral", "Unknown"
                                     ]
                                 },
 
@@ -110,7 +57,7 @@
                                     "description": "Type of Sensor used",
                                     "type": "string",
                                     "enum": [
-                                        "Piezoelectric Film", "Forceplate", "Accelerometer", "Piezoelectric crystal", "Unkown"
+                                        "Piezoelectric Film", "Forceplate", "Accelerometer", "Piezoelectric crystal", "Unknown"
                                     ]
                                 },
 
@@ -121,7 +68,10 @@
                                         "Starr", "Nickerson", "Dock", "Other", "Unknown"
                                     ]
                                 }
-                            }
+                            },
+                            "required": [
+                                "sensor_placement"
+                            ]
                         }
                     }
                 }

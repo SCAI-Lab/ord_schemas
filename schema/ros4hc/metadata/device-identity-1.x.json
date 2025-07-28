@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://w3id.org/ieee/ros4hc-schema/device_identity.json",
+    "title": "Device Identity Metadata",
+    "description": "This schema represents the metadata of an device",
+    "type": "object",
+    "properties": {
+        "device_manufacturer": {
+            "type": "string"
+        },
+        "device_name": {
+            "type": "string"
+        },
+        "device_type": {
+            "type": "string"
+        },
+        "device_serial_number": {
+            "type": "string"
+        }
+    },
+    "required": [
+    ]
+}

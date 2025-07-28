@@ -6,20 +6,20 @@
     "description": "This schema represents a ecg data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
-        "header": {
-            "$ref": "sensor-device-header-1.x.json"
+        "device-info": {
+            "$ref": "device-info-1.x.json"
         },
-        
-        "ecg_body": {
-            "$ref": "ecg-1.x.json"
+        "default-header": {
+            "$ref": "ord-default-header-1.x.json"
         },
-
+        "filter": {
+            "$ref": "healthcare-filterbase-1.x.json"
+        },
         "lead_location_enum": {
             "$ref": "lead-location-1.x.json"
         },
-
-        "filter": {
-            "$ref": "healthcare-filterbase-1.x.json"
+        "ecg_body":{
+            "$ref": "ecg-1.x.json"
         }
     },
 
@@ -29,59 +29,16 @@
             "description": "The header of the data point.",
             "type":"object",
             "allOf": [
-                {"$ref": "#/definitions/header"},
-
+                {"$ref": "#/definitions/default-header"},
+                {"$ref": "#/definitions/device-info"},
                 {"$ref": "#/definitions/filter"},
 
                 {
                     "type": "object",
                     "properties": {
-                        "ecg_info": {
+                        "electrode_configuration": {
                             "type": "object",
                             "properties": {
-
-                                "sampling_frequency": {
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/definitions/unit_value"
-                                        },
-                                        { 
-                                            "type": "object",
-                                            "properties": {
-                                                "unit": {
-                                                    "enum": [
-                                                        "Hz"
-                                                    ]
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-
-                                "window_size_samples": {
-                                    "description": "Number of samples per ECG.msg",
-                                    "type": "integer"
-                                },
-                            
-                                "quality_window_size_samples": {
-                                    "description": "Number of samples per quality value",
-                                    "type": "integer"
-                                },
-
-                                "units": {
-                                    "type": "string",
-                                    "enum": ["Unknown", "mV", "uV", "Counts"]
-                                },
-
-                                "gain": {
-                                    "type": "number",
-                                    "description": "Multiplicative factor (e.g., µV/count); set to 1.0 if signal is already scaled"
-                                },
-
-                                "adc_resolution": {
-                                    "description": "Bits (e.g. 12, 16)",
-                                    "type": "integer"
-                                },
 
                                 "electrode_placement": {
                                     "description": "Support multiple electrode placements",
@@ -100,7 +57,7 @@
                             },
 
                             "required": [
-                                "sampling_frequency", "units"
+                                "electrode_placement"
                             ]
                         }
                     }

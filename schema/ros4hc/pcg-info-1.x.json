@@ -6,18 +6,18 @@
     "description": "This schema represents a ppg data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
-        "header": {
-            "$ref": "sensor-device-header-1.x.json"
+        "device-info": {
+            "$ref": "device-info-1.x.json"
         },
-        
-        "ppg_body": {
-            "$ref": "ppg-1.x.json"
+        "default-header": {
+            "$ref": "ord-default-header-1.x.json"
         },
-
         "filter": {
             "$ref": "healthcare-filterbase-1.x.json"
         },
-
+        "ppg_body": {
+            "$ref": "ppg-1.x.json"
+        },
         "unit_value": {
             "$ref": "unit-value-1.0.json"
         }
@@ -29,59 +29,16 @@
             "description": "The header of the data point.",
             "type":"object",
             "allOf": [
-                {"$ref": "#/definitions/header"},
-
+                {"$ref": "#/definitions/default-header"},
+                {"$ref": "#/definitions/device-info"},
                 {"$ref": "#/definitions/filter"},
 
                 {
                     "type": "object",
                     "properties": {
-                        "ppg_info": {
+                        "sensor_configuration": {
                             "type": "object",
                             "properties": {
-
-                                "sampling_frequency": {
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/definitions/unit_value"
-                                        },
-                                        { 
-                                            "type": "object",
-                                            "properties": {
-                                                "unit": {
-                                                    "enum": [
-                                                        "Hz"
-                                                    ]
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-
-                                "window_size_samples": {
-                                    "description": "Number of samples per ICG.msg",
-                                    "type": "integer"
-                                },
-                            
-                                "quality_window_size_samples": {
-                                    "description": "Number of samples per quality value",
-                                    "type": "integer"
-                                },
-
-                                "units": {
-                                    "type": "string",
-                                    "enum": ["Unknown", "mV", "uV", "RLU", "Counts"]
-                                },
-
-                                "gain": {
-                                    "type": "number",
-                                    "description": "Multiplicative factor (e.g., µV/count); set to 1.0 if signal is already scaled"
-                                },
-
-                                "wavelengths_mm": {
-                                    "description": "One entry per PPG channel; may be [660, 880, 940]",
-                                    "type": "integer"
-                                },
 
                                 "sensor_placement": {
                                     "type": "string",
@@ -95,7 +52,25 @@
                             },
 
                             "required": [
-                                "sampling_frequency", "units"
+                                "sensor_placement"
+                            ]
+                        },
+
+                        "signal_waveform_specifications":{
+                            "type": "object",
+                            "properties": {
+                                "wavelengths_mm": {
+                                    "description": "Nanometer value for each channel, may be [660, 880, 940]",
+                                    "type": "integer"
+                                },
+                                "wavelengths_labels": {
+                                    "description": "Wavelength Label for each channel (optional)",
+                                    "type": "string",
+                                    "enum": ["Unknown", "Green", "Red", "IR", "Blue", "Yellow", "Custom"]
+                                }
+                            },
+                            "required": [
+                                "wavelengths_mm"
                             ]
                         }
                     }

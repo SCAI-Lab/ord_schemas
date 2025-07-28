@@ -6,18 +6,18 @@
     "description": "This schema represents a eog data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
-        "header": {
-            "$ref": "sensor-device-header-1.x.json"
+        "device-info": {
+            "$ref": "device-info-1.x.json"
         },
-        
-        "eog_body": {
-            "$ref": "eog-1.x.json"
+        "default-header": {
+            "$ref": "ord-default-header-1.x.json"
         },
-
         "filter": {
             "$ref": "healthcare-filterbase-1.x.json"
         },
-
+        "eog_body": {
+            "$ref": "eog-1.x.json"
+        },
         "unit_value": {
             "$ref": "unit-value-1.0.json"
         }
@@ -29,59 +29,16 @@
             "description": "The header of the data point.",
             "type":"object",
             "allOf": [
-                {"$ref": "#/definitions/header"},
-
+                {"$ref": "#/definitions/default-header"},
+                {"$ref": "#/definitions/device-info"},
                 {"$ref": "#/definitions/filter"},
 
                 {
                     "type": "object",
                     "properties": {
-                        "eog_info": {
+                        "electrode_configuration": {
                             "type": "object",
                             "properties": {
-
-                                "sampling_frequency": {
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/definitions/unit_value"
-                                        },
-                                        { 
-                                            "type": "object",
-                                            "properties": {
-                                                "unit": {
-                                                    "enum": [
-                                                        "Hz"
-                                                    ]
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-
-                                "window_size_samples": {
-                                    "description": "Number of samples per EOG.msg",
-                                    "type": "integer"
-                                },
-                            
-                                "quality_window_size_samples": {
-                                    "description": "Number of samples per quality value",
-                                    "type": "integer"
-                                },
-
-                                "units": {
-                                    "type": "string",
-                                    "enum": ["Unknown", "uV", "mV", "Counts"]
-                                },
-
-                                "gain": {
-                                    "type": "number",
-                                    "description": "Multiplicative factor (e.g., µV/count); set to 1.0 if signal is already scaled"
-                                },
-
-                                "adc_resolution": {
-                                    "description": "Bits (e.g. 12, 16)",
-                                    "type": "integer"
-                                },
 
                                 "electrode_placement": {
                                     "description": "Support multiple electrode placements",
@@ -100,8 +57,15 @@
                                 "signal_mode": {
                                     "type": "string",
                                     "enum": ["Unknown", "Surface", "Bipolar", "Unipolar", "Corneal Retinal", "Intracular", "Derived", "Custom"]
-                                },
-
+                                }
+                            },
+                            "required": [
+                                "electrode_placement"
+                            ]
+                        },
+                        "lightning_condition":{
+                            "type": "object",
+                            "properties": {
                                 "lightsource": {
                                     "type": "string",
                                     "enum": ["Unknown", "Tungsten", "Halogen", "LED", "Fluorescent", "Sunlight", "Custom"]
@@ -132,9 +96,8 @@
                                     }
                                 }
                             },
-
                             "required": [
-                                "sampling_frequency", "units"
+                                "lightsource"
                             ]
                         }
                     }

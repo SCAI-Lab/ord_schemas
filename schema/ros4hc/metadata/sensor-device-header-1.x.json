@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "description": "Sensor device header with metadata about the device and environmental requirements.",
+    "type": "object",
+    "title": "Sensor Device Metadata",
+
+    "definitions": {
+        "device-info": {
+            "$ref": "device-info-1.x.json"
+        },
+        "default-header": {
+            "$ref": "ord-default-header-1.x.json"
+        }
+    },
+
+    "allOf": [
+                {"$ref": "#/definitions/default-header"},
+                {"$ref": "#/definitions/device-info"}
+            ],
+
+    "required": [
+
+    ]
+}
