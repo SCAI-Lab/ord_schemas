@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "BCG Data",
-    "description": "This schema represents bcg waveform data from a specific lead with signal quality and temporal context",
+    "title": "ICG Data",
+    "description": "This schema represents ICG waveform data from a specific lead with signal quality and temporal context",
     "type": "object",
     
     "definitions": {
@@ -15,7 +15,7 @@
 
     "properties": {
         "session_id": {
-            "description": "match BCGInfo's session_id (if used)",
+            "description": "match ICGInfo's session_id (if used)",
             "type": "string"
         },
 
@@ -23,8 +23,8 @@
             "type": "integer"
         },
 
-        "bcg": {
-            "description": "Raw or filtered BCG values",
+        "icg": {
+            "description": "Raw or filtered ICG values",
             "type": "array",
             "items": {
                 "type": "number"
@@ -47,8 +47,8 @@
         }
     },
     "required": [
-        "session_id",
-        "bcg",
+        "icg",
+        "signal_quality",
         "effective_time_frame"
     ]
 }
