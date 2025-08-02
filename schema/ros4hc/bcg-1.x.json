@@ -43,21 +43,12 @@
 
         "effective_time_frame": {
             "description": "The time interval at which, or time interval during which the measurement is asserted as being valid.",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/time_frame"
-                },
-                {
-                    "required": [
-                        "time_interval"
-                    ]
-                }
-            ]
+            "$ref": "#/definitions/time_frame"
         }
     },
     "required": [
+        "session_id",
         "bcg",
-        "signal_quality",
         "effective_time_frame"
     ]
 }

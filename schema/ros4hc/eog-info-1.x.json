@@ -71,7 +71,7 @@
                                     "enum": ["Unknown", "Tungsten", "Halogen", "LED", "Fluorescent", "Sunlight", "Custom"]
                                 },
 
-                                "gazefield_background_light_brightness": {
+                                "gazefield": {
                                     "allOf": [
                                         {
                                             "$ref": "#/definitions/unit_value"
@@ -89,7 +89,7 @@
                                     ]
                                 },
 
-                                "length_light_dark_phase" : {
+                                "light_dark_phase" : {
                                     "type": "array",
                                     "items": {
                                         "type": "number"

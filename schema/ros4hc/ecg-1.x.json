@@ -46,14 +46,8 @@
         },
 
         "effective_time_frame": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/time_frame"
-                },
-                {
-                    "required": ["time_interval"]
-                }
-            ]
+            "description": "The time interval at which, or time interval during which the measurement is asserted as being valid.",
+            "$ref": "#/definitions/time_frame"
         }
     },
 

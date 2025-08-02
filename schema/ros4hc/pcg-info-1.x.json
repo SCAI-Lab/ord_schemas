@@ -56,12 +56,15 @@
                             ]
                         },
 
-                        "signal_waveform_specifications":{
+                        "waveform_configuration":{
                             "type": "object",
                             "properties": {
                                 "wavelengths_mm": {
                                     "description": "Nanometer value for each channel, may be [660, 880, 940]",
-                                    "type": "integer"
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer"
+                                    }
                                 },
                                 "wavelengths_labels": {
                                     "description": "Wavelength Label for each channel (optional)",

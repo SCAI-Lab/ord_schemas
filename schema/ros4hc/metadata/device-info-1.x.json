@@ -37,7 +37,8 @@
                 "quality_window_size_samples": {
                     "type": "number"
                 }
-            }
+            },
+            "required": ["window_size_samples"]
         }
     },
     "required": [

@@ -33,12 +33,29 @@
         "operation_temperature": {
             "$ref": "#/definitions/min_max_value"
         },
-        "minimal_atmospheric_pressure": { 
+        "maximal_relative_humidity": { 
             "allOf": [
                 {
                     "$ref": "#/definitions/unit_value"
                 },
                 { 
+                    "type": "object",
+                    "properties": {
+                        "unit": {
+                            "enum": [
+                                "%"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "atmospheric_pressure": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/min_max_value"
+                },
+                {
                     "type": "object",
                     "properties": {
                         "unit": {
@@ -49,9 +66,6 @@
                     }
                 }
             ]
-        },
-        "atmospheric_pressure": {
-            "$ref": "#/definitions/min_max_value"
         }
     },
     "required": [

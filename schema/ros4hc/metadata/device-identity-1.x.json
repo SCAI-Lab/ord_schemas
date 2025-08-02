@@ -19,5 +19,6 @@
         }
     },
     "required": [
+        "device_serial_number"
     ]
 }
