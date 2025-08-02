@@ -70,7 +70,10 @@
         },
 
         "body": {
-            "$ref": "#/definitions/icg_body"
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/icg_body"
+            }
         }
     },
 

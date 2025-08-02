@@ -82,7 +82,10 @@
         },
 
         "body": {
-            "$ref": "#/definitions/ppg_body"
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/ppg_body"
+            }
         }
     },
 

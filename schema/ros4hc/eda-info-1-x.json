@@ -73,7 +73,10 @@
         },
 
         "body": {
-            "$ref": "#/definitions/eda_body"
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/eda_body"
+            }
         }
     },
 

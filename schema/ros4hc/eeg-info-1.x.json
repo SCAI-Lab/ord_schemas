@@ -74,7 +74,10 @@
         },
 
         "body": {
-            "$ref": "#/definitions/eeg_body"
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/eeg_body"
+            }
         }
     },
 

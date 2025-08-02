@@ -106,7 +106,10 @@
         },
 
         "body": {
-            "$ref": "#/definitions/eog_body"
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/eog_body"
+            }
         }
     },
 

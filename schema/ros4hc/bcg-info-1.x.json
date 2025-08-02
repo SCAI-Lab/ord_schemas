@@ -78,7 +78,10 @@
             ]
         },
         "body": {
-            "$ref": "#/definitions/bcg_body"
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/bcg_body"
+            }
         }
     },
 

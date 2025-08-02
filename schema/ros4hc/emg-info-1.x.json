@@ -72,7 +72,10 @@
         },
 
         "body": {
-            "$ref": "#/definitions/emg_body"
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/emg_body"
+            }
         }
     },
 
