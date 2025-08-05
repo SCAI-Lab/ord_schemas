@@ -1,0 +1,4 @@
+What is required in signal Info? e.g. Sensor configuration, lightning configuration etc.
+How to know from ros messages which signal is coming from? Is there something like a tag?
+
+EOG_Info.msg stilll has Units as field -> should be in deviceInfo

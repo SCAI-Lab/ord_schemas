@@ -1,24 +1,28 @@
 {
     "header": {
-        "uuid": "123e4567-e89b-12d3-a456-426614174000-LLMGenerated",
-        "schema_id": "ecg-lead-1.x",
-        "source_creation_date_time": "2025-06-21T14:30:00Z",
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "schema_id": {
+            "namespace": "org.example.ecg",
+            "name": "ecg-lead",
+            "version": "1.0"
+        },
+        "source_creation_date_time": "2025-07-04T13:45:00Z",
         "modality": "sensed",
         "acquisition_rate": {
             "value": 250,
             "unit": "Hz"
         },
         "external_datasheets": [
-        {
-            "datasheet_type": "hardware",
-            "datasheet_reference": "https://example.com/devices/ecg-sensor-3000"
-        }
+            {
+                "datasheet_type": "hardware",
+                "datasheet_reference": "https://example.org/device/datasheet"
+            }
         ],
         "device_identity": {
-            "device_manufacturer": "HealthTech Inc.",
-            "device_name": "ECG Sensor 3000",
+            "device_manufacturer": "CardioTech Inc.",
+            "device_name": "ECG-SensorX",
             "device_type": "wearable",
-            "device_serial_number": "HTI-ECG-987654"
+            "device_serial_number": "CT-ECG-00123"
         },
         "environmental_requirements": {
             "battery_level": {
@@ -34,7 +38,7 @@
                 "unit": "°C"
             },
             "maximal_relative_humidity": {
-                "value": 95,
+                "value": 90,
                 "unit": "%"
             },
             "minimal_atmospheric_pressure": {
@@ -49,29 +53,44 @@
         "measurement_specs": {
             "measuring_unit": "µV",
             "sampling_frequency_hz": 250,
-            "resolution": 0.1,
+            "resolution": 0.5,
             "accuracy": 0.98,
             "max_range": 5000,
             "min_range": -5000
         },
         "ecg_info": {
-            "lead_number": 1,
-            "location_lead": "II"
+            "sampling_frequency": {
+                "value": 250,
+                "unit": "Hz"
+            },
+            "window_size_samples": 1000,
+            "quality_window_size_samples": 100,
+            "units": "µV",
+            "gain": 0.01,
+            "adc_resolution": 16,
+            "electrode_placement": [
+                "Chest",
+                "Left Arm",
+                "Right Arm"
+            ],
+            "lead_type": "II"
         }
     },
-
     "body": {
-        "ecg_lead_data": [
-            120.4, 118.9, 119.7, 122.1, 121.0, 120.8
-            ],
+        "session_id": "session-ecg-20250704-001",
+        "channel_size": 1,
+        "sample_size": 1000,
+        "ecg": [
+            0.5, 0.7, 0.6, 0.4, 0.2, -0.1, -0.4, -0.6, -0.7, -0.5,
+            0.1, 0.6, 0.8, 0.9, 1.0, 0.8, 0.5, 0.2, 0.0, -0.2
+        ],
         "signal_quality": [
-            1.0, 0.99, 0.98, 1.0, 0.97, 1.0
-            ],
-        "unit": "µV",
+            0.98, 0.98, 0.97, 0.96, 0.95, 0.95, 0.94, 0.94, 0.93, 0.93
+        ],
         "effective_time_frame": {
             "time_interval": {
-                "start_date_time": "2025-06-21T14:30:00Z",
-                "end_date_time": "2025-06-21T14:30:02Z"
+                "start_date_time": "2025-07-04T13:45:00Z",
+                "end_date_time": "2025-07-04T13:45:04Z"
             }
         }
     }

@@ -14,8 +14,21 @@
     },
 
     "properties": {
-        "ecg_lead_data": {
-            "description": "EDA signal amplitude",
+        "session_id": {
+            "description": "match ECGInfo's session_id (if used)",
+            "type": "string"
+        },
+
+        "channel_size": {
+            "type": "integer"
+        },
+
+        "sample_size": {
+            "type": "integer"
+        },
+        
+        "ecg": {
+            "description": "Raw or filtered ECG values",
             "type": "array",
             "items": {
                 "type": "number"
@@ -23,36 +36,24 @@
         },
 
         "signal_quality": {
-            "description": "Signal quality score (0-1)",
-            "type:": "array",
+            "description": "From 0 (poor) to 1 [%]",
+            "type": "array",
             "items": {
                 "type": "number",
-                "minimum": 0,
-                "maximum": 1
+                "maximum": 1,
+                "minimum": 0
             }
         },
-        
-        "unit": {
-            "type": "string",
-            "enum": ["µV", "mV"]
-        },        
 
         "effective_time_frame": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/time_frame"
-                },
-                {
-                    "required": ["time_interval"]
-                }
-            ]
+            "description": "The time interval at which, or time interval during which the measurement is asserted as being valid.",
+            "$ref": "#/definitions/time_frame"
         }
     },
 
     "required": [
-        "ecg_lead_data", 
+        "ecg", 
         "signal_quality", 
-        "unit",
         "effective_time_frame"
     ]
 }

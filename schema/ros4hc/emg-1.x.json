@@ -1,9 +1,9 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "BCG Data",
-    "description": "This schema represents bcg waveform data from a specific lead with signal quality and temporal context",
+    "title": "EMG Data",
+    "description": "This schema represents EMG waveform segments with associated signal quality and recording timestamps.",
     "type": "object",
-    
+
     "definitions": {
         "time_frame": {
             "$ref": "time-frame-1.0.json"
@@ -15,16 +15,20 @@
 
     "properties": {
         "session_id": {
-            "description": "match BCGInfo's session_id (if used)",
+            "description": "match EMGInfo's session_id (if used)",
             "type": "string"
+        },
+
+        "channel_size": {
+            "type": "integer"
         },
 
         "sample_size": {
             "type": "integer"
         },
-
-        "bcg": {
-            "description": "Raw or filtered BCG values",
+        
+        "emg": {
+            "description": "Raw or filtered EMG values",
             "type": "array",
             "items": {
                 "type": "number"
@@ -46,9 +50,10 @@
             "$ref": "#/definitions/time_frame"
         }
     },
+
     "required": [
-        "session_id",
-        "bcg",
+        "emg", 
+        "signal_quality", 
         "effective_time_frame"
     ]
 }

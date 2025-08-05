@@ -1,9 +1,9 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
 
-    "title": "ECG Data Series",
+    "title": "ICGInfo Data Series",
     "type": "object",
-    "description": "This schema represents a ecg data series, i.e., an array of measures that share the same header.",
+    "description": "This schema represents a icg data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
         "device-info": {
@@ -15,11 +15,11 @@
         "filter": {
             "$ref": "healthcare-filterbase-1.x.json"
         },
-        "lead_location_enum": {
-            "$ref": "lead-location-1.x.json"
+        "icg_body": {
+            "$ref": "icg-1.x.json"
         },
-        "ecg_body":{
-            "$ref": "ecg-1.x.json"
+        "unit_value": {
+            "$ref": "unit-value-1.0.json"
         }
     },
 
@@ -45,14 +45,18 @@
                                     "type": "array",
                                     "items": {
                                         "type": "string",
-                                        "enum": [
-                                            "Unknown", "Placement Limb", "Wrist Ankle", "Chest", "Torso", "Abdomen", "Back", "Ear", "Neck", "Left Arm", "Right Arm", "Left Leg", "Right Leg", "Custom"
-                                        ]
+                                        "enum": ["Unknown", "Chest", "Back", "Left Arm", "Right Arm", "Left Leg", "Right Leg", "Neck", "Abdomen", "Custom"]
                                     }
                                 },
 
                                 "lead_type": {
-                                    "$ref": "#/definitions/lead_location_enum"
+                                    "type": "string",
+                                    "enum": ["Unknown", "Transthoracic", "Four Electrode", "Six Electrode", "Spot", "Custom"]
+                                },
+
+                                "technique": {
+                                    "type": "string",
+                                    "enum": ["Unknown", "Tetrapolar", "Octapolar", "Custom"]
                                 }
                             },
 
@@ -68,7 +72,7 @@
         "body": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/ecg_body"
+                "$ref": "#/definitions/icg_body"
             }
         }
     },

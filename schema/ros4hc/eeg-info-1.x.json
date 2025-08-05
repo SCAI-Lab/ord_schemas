@@ -1,9 +1,9 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
 
-    "title": "ECG Data Series",
+    "title": "EEGInfo Data Series",
     "type": "object",
-    "description": "This schema represents a ecg data series, i.e., an array of measures that share the same header.",
+    "description": "This schema represents a eeg data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
         "device-info": {
@@ -15,11 +15,8 @@
         "filter": {
             "$ref": "healthcare-filterbase-1.x.json"
         },
-        "lead_location_enum": {
-            "$ref": "lead-location-1.x.json"
-        },
-        "ecg_body":{
-            "$ref": "ecg-1.x.json"
+        "eeg_body": {
+            "$ref": "eeg-1.x.json"
         }
     },
 
@@ -46,13 +43,24 @@
                                     "items": {
                                         "type": "string",
                                         "enum": [
-                                            "Unknown", "Placement Limb", "Wrist Ankle", "Chest", "Torso", "Abdomen", "Back", "Ear", "Neck", "Left Arm", "Right Arm", "Left Leg", "Right Leg", "Custom"
+                                            "Unknown", "Method 1020", "Method 1010", "Method 105", "Custom"
                                         ]
                                     }
                                 },
 
-                                "lead_type": {
-                                    "$ref": "#/definitions/lead_location_enum"
+                                "electrode_site": {
+                                    "type": "string",
+                                    "enum": ["Unknown", "FP1", "FP2", "F3", "F4", "C3", "C4", "P3", "P4", "O1", "O2", "F7", "F8", "T3", "T4", "T5", "T6", "FZ", "CZ", "PZ", "OZ", "Custom"]
+                                },
+
+                                "electrode_physical_type": {
+                                    "type": "string",
+                                    "enum": ["Unknown", "AgCl", "Gold Cup", "Dry", "Wet", "Hydrogel", "Microneedle", "Custom"]
+                                },
+
+                                "signal_mode": {
+                                    "type": "string",
+                                    "enum": ["Unknown", "Surface", "Intracranial", "Custom"]
                                 }
                             },
 
@@ -68,7 +76,7 @@
         "body": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/ecg_body"
+                "$ref": "#/definitions/eeg_body"
             }
         }
     },

@@ -1,9 +1,9 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
 
-    "title": "ECG Data Series",
+    "title": "EMGInfo Data Series",
     "type": "object",
-    "description": "This schema represents a ecg data series, i.e., an array of measures that share the same header.",
+    "description": "This schema represents a emg data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
         "device-info": {
@@ -15,11 +15,8 @@
         "filter": {
             "$ref": "healthcare-filterbase-1.x.json"
         },
-        "lead_location_enum": {
-            "$ref": "lead-location-1.x.json"
-        },
-        "ecg_body":{
-            "$ref": "ecg-1.x.json"
+        "emg_body": {
+            "$ref": "emg-1.x.json"
         }
     },
 
@@ -45,14 +42,23 @@
                                     "type": "array",
                                     "items": {
                                         "type": "string",
-                                        "enum": [
-                                            "Unknown", "Placement Limb", "Wrist Ankle", "Chest", "Torso", "Abdomen", "Back", "Ear", "Neck", "Left Arm", "Right Arm", "Left Leg", "Right Leg", "Custom"
-                                        ]
+                                        "enum": ["Unknown", "Biceps", "Triceps", "Forearm", "Calf", "Back", "Abdomen", "Quadriceps", "Hamstring", "Face", "Neck", "Custom"]
                                     }
                                 },
 
-                                "lead_type": {
-                                    "$ref": "#/definitions/lead_location_enum"
+                                "electrode_type": {
+                                    "type": "string",
+                                    "enum": ["Unknown", "Surface", "Needle", "Wire", "Interferential", "Custom"]
+                                },
+
+                                "external_device": {
+                                    "type": "string",
+                                    "enum": ["Unknown", "TENS", "FES", "EMG Trigger", "Custom"]
+                                },
+
+                                "signal_mode": {
+                                    "type": "string",
+                                    "enum": ["Unknown", "Surface", "Intramuscular", "Custom"]
                                 }
                             },
 
@@ -68,7 +74,7 @@
         "body": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/ecg_body"
+                "$ref": "#/definitions/emg_body"
             }
         }
     },

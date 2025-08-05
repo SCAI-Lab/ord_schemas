@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://w3id.org/ieee/ros4hc-schema/operating_environment.json",
+    "title": "Operating environment of an device Metadata",
+    "description": "This schema represents the metadata of an device and its operating environment",
+    "type": "object",
+    "definitions": {
+        "device_identity": {
+            "$ref": "device_identity-1.x.json"
+        },
+        "operating_environment": {
+            "$ref": "operating_environment-1.x.json"
+        },
+        "measurement_specification": {
+            "$ref": "measurement_specification-1.x.json"
+        }
+    },
+    "properties": {
+        "device_identity": {
+            "$ref": "#/definitions/device_identity"
+        },
+        "operating_environment":{
+            "$ref": "#/definitions/operating_environment"
+        },
+        "measurement_specification": {
+            "$ref": "#/definitions/measurement_specification"
+        },
+        "session_id": {
+            "type": "string"
+        },
+        "data_size": {
+            "type": "object",
+            "properties": {
+                "window_size_samples": {
+                    "type": "number"
+                },
+                "quality_window_size_samples": {
+                    "type": "number"
+                }
+            },
+            "required": ["window_size_samples"]
+        }
+    },
+    "required": [
+        "session_id",
+        "data_size"
+    ]
+}
