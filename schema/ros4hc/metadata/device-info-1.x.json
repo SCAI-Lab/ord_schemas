@@ -6,13 +6,13 @@
     "type": "object",
     "definitions": {
         "device_identity": {
-            "$ref": "device_identity-1.x.json"
+            "$ref": "device-identity-1.x.json"
         },
         "operating_environment": {
-            "$ref": "operating_environment-1.x.json"
+            "$ref": "operating-environment-1.x.json"
         },
         "measurement_specification": {
-            "$ref": "measurement_specification-1.x.json"
+            "$ref": "measurement-specification-1.x.json"
         }
     },
     "properties": {

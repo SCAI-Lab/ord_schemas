@@ -28,10 +28,12 @@
         },
 
         "ac_component": {
+            "description": "# [samples]×[wavelengths]",
             "type": "number"
         },
 
         "dc_component" : {
+            "description": "# [samples]×[wavelengths]",
             "type": "number"
         },
 

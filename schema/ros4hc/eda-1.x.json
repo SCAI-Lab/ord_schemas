@@ -40,7 +40,7 @@
         },
 
         "eda": {
-            "description": "Sum of signals (scl + scr",
+            "description": "Sum of signals (scl + scr)",
             "type": "array",
             "items": {
                 "type": "number"
