@@ -5,17 +5,59 @@
     "title": "Sensor Device Metadata",
 
     "definitions": {
-        "device-info": {
-            "$ref": "device-info-1.x.json"
-        },
         "default-header": {
             "$ref": "ord-default-header-1.x.json"
+        },
+        "filter": {
+            "$ref": "healthcare-filterbase-1.x.json"
+        },
+        "device_identity": {
+            "$ref": "device-identity-1.x.json"
+        },
+        "operating_environment": {
+            "$ref": "operating-environment-1.x.json"
+        },
+        "measurement_specification": {
+            "$ref": "measurement-specification-1.x.json"
         }
     },
 
     "allOf": [
                 {"$ref": "#/definitions/default-header"},
-                {"$ref": "#/definitions/device-info"}
+                {
+                    "type": "object",
+                    "properties": {
+                        "device_identity": {
+                            "$ref": "#/definitions/device_identity"
+                        },
+                        "operating_environment":{
+                            "$ref": "#/definitions/operating_environment"
+                        },
+                        "measurement_specification": {
+                            "$ref": "#/definitions/measurement_specification"
+                        },
+                        "session_id": {
+                            "type": "string"
+                        },
+                        "data_size": {
+                            "type": "object",
+                            "properties": {
+                                "window_size_samples": {
+                                    "type": "number"
+                                },
+                                "quality_window_size_samples": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": ["window_size_samples"]
+                        }
+                    },
+                    "required": [
+                        "session_id",
+                        "data_size"
+                    ]
+                },
+                {"$ref": "#/definitions/filter"}
             ],
 
     "required": [

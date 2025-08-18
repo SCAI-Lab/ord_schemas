@@ -6,91 +6,59 @@
     "description": "This schema represents a ppg data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
-        "device-info": {
-            "$ref": "device-info-1.x.json"
-        },
-        "default-header": {
-            "$ref": "ord-default-header-1.x.json"
-        },
-        "filter": {
-            "$ref": "healthcare-filterbase-1.x.json"
-        },
-        "ppg_body": {
-            "$ref": "ppg-1.x.json"
-        },
-        "unit_value": {
-            "$ref": "unit-value-1.0.json"
+        "sensor_device_header": {
+            "$ref": "sensor-device-header-1.x.json"
         }
     },
 
 
-    "properties": {
-        "header": {
-            "description": "The header of the data point.",
-            "type":"object",
-            "allOf": [
-                {"$ref": "#/definitions/default-header"},
-                {"$ref": "#/definitions/device-info"},
-                {"$ref": "#/definitions/filter"},
+   "allOf": [
+        {"$ref": "#/definitions/sensor_device_header"},
 
-                {
+        {
+            "type": "object",
+            "properties": {
+                "sensor_configuration": {
                     "type": "object",
                     "properties": {
-                        "sensor_configuration": {
-                            "type": "object",
-                            "properties": {
 
-                                "sensor_placement": {
-                                    "type": "string",
-                                    "enum": ["Unknown", "Finger", "Wrist", "Earlobe", "Forehead", "Toe", "Arm", "Chest", "Ankle", "Nose", "Palm", "Sole", "Custom"]
-                                },
-
-                                "measuring_mode": {
-                                    "type": "string",
-                                    "enum": ["Unknown", "Transmissive Absorption", "Reflective", "Custom"]
-                                }
-                            },
-
-                            "required": [
-                                "sensor_placement"
-                            ]
+                        "sensor_placement": {
+                            "type": "string",
+                            "enum": ["Unknown", "Finger", "Wrist", "Earlobe", "Forehead", "Toe", "Arm", "Chest", "Ankle", "Nose", "Palm", "Sole", "Custom"]
                         },
 
-                        "waveform_configuration":{
-                            "type": "object",
-                            "properties": {
-                                "wavelengths_mm": {
-                                    "description": "Nanometer value for each channel, may be [660, 880, 940]",
-                                    "type": "array",
-                                    "items": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "wavelengths_labels": {
-                                    "description": "Wavelength Label for each channel (optional)",
-                                    "type": "string",
-                                    "enum": ["Unknown", "Green", "Red", "IR", "Blue", "Yellow", "Custom"]
-                                }
-                            },
-                            "required": [
-                                "wavelengths_mm"
-                            ]
+                        "measuring_mode": {
+                            "type": "string",
+                            "enum": ["Unknown", "Transmissive Absorption", "Reflective", "Custom"]
                         }
-                    }
-                }
-            ]
-        },
+                    },
 
-        "body": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/ppg_body"
+                    "required": [
+                        "sensor_placement"
+                    ]
+                },
+
+                "waveform_configuration":{
+                    "type": "object",
+                    "properties": {
+                        "wavelengths_mm": {
+                            "description": "Nanometer value for each channel, may be [660, 880, 940]",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "wavelengths_labels": {
+                            "description": "Wavelength Label for each channel (optional)",
+                            "type": "string",
+                            "enum": ["Unknown", "Green", "Red", "IR", "Blue", "Yellow", "Custom"]
+                        }
+                    },
+                    "required": [
+                        "wavelengths_mm"
+                    ]
+                }
             }
         }
-    },
-
-    "required": [
-        "header",
-        "body"
     ]
 }
