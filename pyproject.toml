@@ -11,8 +11,8 @@ readme = "README.md"
 requires-python = ">=3.8"
 
 [tool.setuptools]
-packages = ["schema"]
+packages = ["ord_schemas", "ord_schemas.schema"]
 include-package-data = true
 
 [tool.setuptools.package-data]
-"ord_schemas" = ["**/*.json"]
+"ord_schemas.schema" = ["**/*.json"]
