@@ -50,29 +50,77 @@ def get_tree_structure():
 
 
 
-def list_schemas(domain=None):
+def list_schemas(domain=None, subfolder=None, with_path = False):
     """
-    List all JSON schema files, recursively, optionally filtered by domain.
-    Returns paths relative to the domain folder.
+    List all JSON schema files, recursively, optionally filtered by domain and/or subfolder.
+    If with_path=True, returns the full path relative to the package root.
+    Otherwise, returns paths relative to the domain folder, OR relative to the subfolder 
+    if both domain and subfolder are provided.
     """
     schemas = []
     package_dir = pkg_resources.files(PACKAGE_NAME)
     
+    if subfolder is not None and domain is None:
+        raise ValueError("Cannot filter by 'subfolder' without specifying a 'domain'.")
+
+    start_index = 0
+    if domain is not None:
+        start_index = 1
+    if subfolder is not None:
+        start_index = 2
+
     for path in package_dir.rglob("*.json"):
         relative_path = path.relative_to(package_dir)
-        if domain is None or relative_path.parts[0] == domain:
-            relative_to_domain = "/".join(relative_path.parts[1:])
-            schemas.append(relative_to_domain)
-    
+
+        if domain is not None and relative_path.parts[0] != domain:
+            continue
+            
+        if subfolder is not None:
+            if len(relative_path.parts) < 2 or relative_path.parts[1] != subfolder:
+                continue
+
+        if with_path:
+            schemas.append(relative_path.as_posix())
+        else:
+            relative_path_parts = relative_path.parts[start_index:]
+            relative_schema_path = "/".join(relative_path_parts)
+            schemas.append(relative_schema_path)
+        
     return schemas
 
 
-def load_schema(domain, schema_relative_path):
+def load_schema(folder, schema_name):
     """
     Load a JSON schema by domain and relative path (supports nested folders).
-    Example: load_schema("ros4hc", "metadata/meta1.json")
+    Example: load_schema("ros4hc/metadata", "meta1.json")
     """
-    schema_file = f"{domain}/{schema_relative_path}"
+    schema_file = f"{folder}/{schema_name}"
     package_dir = pkg_resources.files(PACKAGE_NAME)
     with package_dir.joinpath(schema_file).open("r") as f:
         return json.load(f)
+    
+
+def load_schema_from_path(schema_path):
+    """
+    Load a JSON schema by its full path relative to the package root.
+    Example: load_schema_from_path("ros4hc/metadata/meta1.json")
+    """
+    package_dir = pkg_resources.files(PACKAGE_NAME)
+    
+    try:
+        schema_file = package_dir.joinpath(schema_path)
+        with schema_file.open("r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Schema not found at path: {schema_path} relative to package {PACKAGE_NAME}")
+    
+
+def load_schema(folder, schema_name):
+    """
+    Load a JSON schema by specifying the folder path and the schema file name.
+    Example: load_schema("ros4hc/metadata", "meta1.json")
+    
+    This function acts as a wrapper for load_schema_from_path.
+    """
+    schema_path = f"{folder}/{schema_name}"
+    return load_schema_from_path(schema_path)
