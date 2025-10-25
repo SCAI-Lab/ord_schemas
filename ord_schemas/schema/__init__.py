@@ -20,7 +20,7 @@ def _format_tree(path, prefix = ''):
     items = sorted([
         item
         for item in path.iterdir()
-        if item.is_dir() and item.name != "__pycache"
+        if item.is_dir() and item.name != "__pycache__"
     ], key = lambda p : p.name)
 
     count = len(items)
