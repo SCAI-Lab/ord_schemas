@@ -110,9 +110,17 @@ def load_schema_from_path(schema_path):
     try:
         schema_file = package_dir.joinpath(schema_path)
         with schema_file.open("r") as f:
-            return json.load(f)
+            content =  json.read().strip()
+
+        if not content:
+            return {}
+        else:
+            return json.loads(content)
+
     except FileNotFoundError:
         raise FileNotFoundError(f"Schema not found at path: {schema_path} relative to package {PACKAGE_NAME}")
+    except json.JSONDecodeError as e:
+        raise ValueError(f"File at {schema_path} contains invalid JSON.") from e
     
 
 def load_schema(folder, schema_name):
