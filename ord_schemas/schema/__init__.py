@@ -110,7 +110,7 @@ def load_schema_from_path(schema_path):
     try:
         schema_file = package_dir.joinpath(schema_path)
         with schema_file.open("r") as f:
-            content =  json.read().strip()
+            content =  f.read().strip()
 
         if not content:
             return {}
