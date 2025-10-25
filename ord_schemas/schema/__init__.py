@@ -33,6 +33,8 @@ def _format_tree(path, prefix = ''):
         childPrefix = prefix + (' ' * 4 if is_last else "|" + ' ' * 3)
         tree_lines.extend(_format_tree(item, childPrefix))
 
+    return tree_lines
+
 
 def get_tree_structure():
     """
