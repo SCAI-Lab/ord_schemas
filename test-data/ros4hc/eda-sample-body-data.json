@@ -1,0 +1,13 @@
+{
+    "scl": [2.1, 2.2, 2.2, 2.3],
+    "scr": [0.02, 0.05, 0.03, 0.01],
+    "eda": [2.12, 2.25, 2.23, 2.31],
+    "signal_quality": [0.98, 0.97, 0.99, 0.95],
+    "unit": "uS",
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2025-06-20T08:00:00Z",
+            "end_date_time": "2025-06-20T08:00:04Z"
+        }
+    }
+}

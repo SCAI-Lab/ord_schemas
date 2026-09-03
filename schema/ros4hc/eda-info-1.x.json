@@ -1,0 +1,87 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+    "title": "EDA Data Series",
+    "type": "object",
+    "description": "This schema represents an eda data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "header": {
+            "$ref": "sensor-device-header-1.x.json"
+        },
+
+        "eda_body": {
+            "$ref": "eda-1.x.json"
+        },
+
+        "filter_base": {
+            "$ref": "filter-base-1.x.json"
+        }
+    },
+
+    "properties": {
+        "header": {
+            "description": "The header of the data point.",
+            "type": "object",
+            "allOf": [
+                {"$ref": "#/definitions/header"},
+                {
+                    "type": "object",
+                    "properties": {
+                        "eda_info": {
+                            "type": "object",
+                            "properties": {
+                                "electrode_placement": {
+                                    "description": "Support multiple placements",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "palm", "fingertip", "wrist", "forearm", "sole", "shoulder", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "electrode_type": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "surface", "intracutaneous", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "measuring_technique": {
+                                    "type": "string",
+                                    "enum": [
+                                        "endosomatic", "exosomatic", "custom"
+                                    ]
+                                },
+
+                                "current_form": {
+                                    "type": "string",
+                                    "enum": [
+                                        "dc", "ac"
+                                    ]
+                                },
+
+                                "filters": {
+                                    "$ref": "#/definitions/filter_base"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "body": {
+            "$ref": "#/definitions/eda_body"
+        }
+    },
+
+    "required": [
+        "header",
+        "body"
+    ]
+}

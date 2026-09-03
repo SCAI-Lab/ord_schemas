@@ -12,6 +12,10 @@
         
         "bcg_body": {
             "$ref": "bcg-1.x.json"
+        },
+
+        "filter_base": {
+            "$ref": "filter-base-1.x.json"
         }
     },
 
@@ -49,6 +53,10 @@
 
                                 "measurement_system": {
                                     "type": "string"
+                                },
+
+                                "filters": {
+                                    "$ref": "#/definitions/filter_base"
                                 }
                             }
                         }

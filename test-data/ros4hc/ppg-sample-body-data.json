@@ -1,0 +1,13 @@
+{
+    "ac_component": [0.021, 0.019, 0.023],
+    "dc_component": [1.02, 1.01, 1.03],
+    "ppg": [1.041, 1.029, 1.053],
+    "signal_quality": [0.98, 0.97, 0.99],
+    "unit": "counts",
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2025-06-20T08:00:00Z",
+            "end_date_time": "2025-06-20T08:00:01Z"
+        }
+    }
+}

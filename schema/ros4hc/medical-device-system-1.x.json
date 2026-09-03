@@ -1,0 +1,112 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Medical Device System",
+    "description": "This schema represents an IEEE 11073 MDS (Medical Device System) descriptor.",
+    "type": "object",
+
+    "references": [
+        {
+            "description": "IEEE 11073 nomenclature for the Medical Device System (MDS) object class.",
+            "url": "https://en.wikipedia.org/wiki/ISO/IEEE_11073"
+        }
+    ],
+
+    "definitions": {
+        "date_time": {
+            "$ref": "date-time-1.0.json"
+        },
+        "duration_unit_value": {
+            "$ref": "duration-unit-value-1.0.json"
+        }
+    },
+
+    "properties": {
+        "handle": {
+            "description": "Locally unique number to identify one of the object instances within an agent (0x0000)",
+            "type": "integer"
+        },
+        "system_id": {
+            "description": "Unique system ID (0x0010)",
+            "type": "string"
+        },
+        "system_type": {
+            "description": "Main classification of the device (0x0011)",
+            "type": "string"
+        },
+        "system_type_spec_list": {
+            "description": "Additional classification codes (0x0012)",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "system_model": {
+            "description": "Textual model description (0x0013)",
+            "type": "string"
+        },
+        "production_specification": {
+            "description": "Text/specification string from manufacturer (0x0014)",
+            "type": "string"
+        },
+        "dev_configuration_id": {
+            "description": "Device hardware/software configuration ID (0x0015)",
+            "type": "string"
+        },
+        "base_offset_time": {
+            "description": "Base-Offset-Time (0x0a42)",
+            "$ref": "#/definitions/date_time"
+        },
+        "relative_time": {
+            "description": "Relative-Time (0x0a43)",
+            "$ref": "#/definitions/duration_unit_value"
+        },
+        "hires_relative_time": {
+            "description": "HiRes-Relative-Time (0x0a44)",
+            "$ref": "#/definitions/duration_unit_value"
+        },
+        "date_and_time_adjustment": {
+            "description": "Notes on manual or automatic time adjustment (0x0a45)",
+            "type": "string"
+        },
+        "tick_resolution": {
+            "description": "Tick-Resolution (0x0a4a)",
+            "$ref": "#/definitions/duration_unit_value"
+        },
+        "power_status": {
+            "description": "Power-Status (0x0a47)",
+            "type": "string",
+            "enum": [
+                "on_mains", "on_battery", "both"
+            ]
+        },
+        "battery_level": {
+            "description": "Normalized battery level (0.0-1.0); Battery-Level (0x0a48)",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+        },
+        "remaining_battery_time": {
+            "description": "Estimated time remaining on battery",
+            "$ref": "#/definitions/duration_unit_value"
+        },
+        "reg_cert_data_list": {
+            "description": "e.g., [\"FDA-XYZ\", \"CE-456\"]; Reg-Cert-Data-List (0x0a4b)",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "confirm_timeout": {
+            "description": "Timeout for command confirmation (0x0a4c)",
+            "$ref": "#/definitions/duration_unit_value"
+        },
+        "transport_timeout": {
+            "description": "Timeout for communication inactivity (0x0a4d)",
+            "$ref": "#/definitions/duration_unit_value"
+        }
+    },
+
+    "required": [
+        "system_id"
+    ]
+}

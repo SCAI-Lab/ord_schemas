@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Notch Filter",
+    "description": "This schema represents the parameters of a notch filter applied to a signal.",
+    "type": "object",
+
+    "properties": {
+        "center_frequency_hz": {
+            "description": "Frequency to notch out (e.g., 50.0 or 60.0 Hz)",
+            "type": "number"
+        },
+        "bandwidth_hz": {
+            "description": "Width of the notch (how wide the rejection band is)",
+            "type": "number"
+        },
+        "quality_factor": {
+            "description": "Quality factor (Q); higher means a narrower notch",
+            "type": "number"
+        }
+    },
+
+    "required": [
+        "center_frequency_hz",
+        "bandwidth_hz"
+    ]
+}

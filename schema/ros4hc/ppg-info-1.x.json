@@ -1,0 +1,87 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+    "title": "PPG Data Series",
+    "type": "object",
+    "description": "This schema represents a ppg data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "header": {
+            "$ref": "sensor-device-header-1.x.json"
+        },
+
+        "ppg_body": {
+            "$ref": "ppg-1.x.json"
+        },
+
+        "filter_base": {
+            "$ref": "filter-base-1.x.json"
+        }
+    },
+
+    "properties": {
+        "header": {
+            "description": "The header of the data point.",
+            "type": "object",
+            "allOf": [
+                {"$ref": "#/definitions/header"},
+                {
+                    "type": "object",
+                    "properties": {
+                        "ppg_info": {
+                            "type": "object",
+                            "description": "If both wavelengths_nm and wavelengths_labels are present, they should be the same length and aligned. If only one is present, downstream tools should fall back accordingly.",
+                            "properties": {
+                                "sensor_placement": {
+                                    "type": "string",
+                                    "enum": [
+                                        "finger", "wrist", "hand", "palm", "forearm", "arm", "earlobe",
+                                        "forehead", "nose", "chest", "ankle", "toe", "sole", "custom"
+                                    ]
+                                },
+
+                                "wavelengths_nm": {
+                                    "description": "Nanometer value for each channel (e.g. [525, 880, 660])",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer"
+                                    }
+                                },
+
+                                "wavelengths_labels": {
+                                    "description": "Label for each channel (optional, compact form)",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "green", "red", "ir", "blue", "yellow", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "measuring_mode": {
+                                    "type": "string",
+                                    "enum": [
+                                        "transmissive_absorption", "reflective", "custom"
+                                    ]
+                                },
+
+                                "filters": {
+                                    "$ref": "#/definitions/filter_base"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "body": {
+            "$ref": "#/definitions/ppg_body"
+        }
+    },
+
+    "required": [
+        "header",
+        "body"
+    ]
+}

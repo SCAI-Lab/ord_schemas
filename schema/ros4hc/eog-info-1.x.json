@@ -1,0 +1,102 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+    "title": "EOG Data Series",
+    "type": "object",
+    "description": "This schema represents an eog data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "header": {
+            "$ref": "sensor-device-header-1.x.json"
+        },
+
+        "eog_body": {
+            "$ref": "eog-1.x.json"
+        },
+
+        "filter_base": {
+            "$ref": "filter-base-1.x.json"
+        }
+    },
+
+    "properties": {
+        "header": {
+            "description": "The header of the data point.",
+            "type": "object",
+            "allOf": [
+                {"$ref": "#/definitions/header"},
+                {
+                    "type": "object",
+                    "properties": {
+                        "eog_info": {
+                            "type": "object",
+                            "properties": {
+                                "electrode_placement": {
+                                    "description": "Support multiple placements",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "left_eye", "right_eye", "forehead", "temple_left", "temple_right",
+                                            "above_eye", "below_eye", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "lead_type": {
+                                    "description": "One per channel",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "bipolar_horizontal", "bipolar_vertical", "unipolar", "corneal_retinal", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "signal_mode": {
+                                    "type": "string",
+                                    "enum": [
+                                        "surface", "bipolar", "unipolar", "corneal_retinal", "intracular", "derived", "custom"
+                                    ]
+                                },
+
+                                "lightsource": {
+                                    "type": "string",
+                                    "enum": [
+                                        "tungsten", "halogen", "led", "fluorescent", "sunlight", "custom"
+                                    ]
+                                },
+
+                                "gazefield_background_light_brightness": {
+                                    "description": "Background light brightness of the gaze field, in cd/m²",
+                                    "type": "number"
+                                },
+
+                                "length_light_dark_phase": {
+                                    "description": "Alternating light/dark phases (e.g., for visual stimulation protocols), in seconds: [light_sec1, dark_sec1, light_sec2, dark_sec2, ...]",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                },
+
+                                "filters": {
+                                    "$ref": "#/definitions/filter_base"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "body": {
+            "$ref": "#/definitions/eog_body"
+        }
+    },
+
+    "required": [
+        "header",
+        "body"
+    ]
+}

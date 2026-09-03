@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "High-Pass Filter",
+    "description": "This schema represents the parameters of a high-pass filter applied to a signal.",
+    "type": "object",
+
+    "properties": {
+        "cutoff_frequency": {
+            "description": "Cutoff frequency, in Hz",
+            "type": "number"
+        },
+        "order": {
+            "description": "Filter order (e.g., 2, 4)",
+            "type": "integer"
+        },
+        "sampling_rate": {
+            "description": "Sampling rate, in Hz",
+            "type": "number"
+        },
+        "zero_phase": {
+            "description": "True if using a forward-backward filter (e.g., filtfilt)",
+            "type": "boolean"
+        }
+    },
+
+    "required": [
+        "cutoff_frequency",
+        "order",
+        "sampling_rate"
+    ]
+}

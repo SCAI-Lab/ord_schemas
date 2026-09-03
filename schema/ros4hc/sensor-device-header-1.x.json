@@ -16,10 +16,21 @@
         },
         "unit_value": {
             "$ref": "unit-value-1.0.json"
+        },
+        "medical_device_system": {
+            "$ref": "medical-device-system-1.x.json"
         }
     },
 
     "properties": {
+        "session_id": {
+            "description": "Session identifier shared across the data points/series produced during the same recording session.",
+            "type": "string"
+        },
+        "mds": {
+            "description": "The IEEE 11073 Medical Device System (MDS) descriptor of the device.",
+            "$ref": "#/definitions/medical_device_system"
+        },
         "uuid": {
             "description": "The identifier of this data point: a globally unique value, generated using RFC 4122 approach.",
             "references": [
@@ -221,11 +232,31 @@
                     "minimum": 0,
                     "maximum": 1
                 },
-                "max_range": { 
-                    "type": "number" 
+                "max_range": {
+                    "type": "number"
                 },
-                "min_range": { 
-                    "type": "number" 
+                "min_range": {
+                    "type": "number"
+                },
+                "gain": {
+                    "description": "Multiplicative factor; set to 1.0 if signal is already scaled",
+                    "type": "number"
+                },
+                "adc_resolution": {
+                    "description": "ADC resolution, in bits (e.g., 12, 16)",
+                    "type": "integer"
+                },
+                "window_size_samples": {
+                    "description": "Number of samples per message",
+                    "type": "integer"
+                },
+                "quality_window_size_samples": {
+                    "description": "Number of samples per quality value",
+                    "type": "integer"
+                },
+                "stride_length": {
+                    "description": "Step size, in ms, by which the analysis window moves forward in time",
+                    "type": "number"
                 }
             }
         }

@@ -1,0 +1,11 @@
+{
+    "eeg": [1.2, -0.8, 0.5, 2.1, -1.4, 0.9],
+    "quality": [0.95, 0.94, 0.96, 0.93, 0.97, 0.95],
+    "unit": "µV",
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2025-06-20T08:00:00Z",
+            "end_date_time": "2025-06-20T08:00:01Z"
+        }
+    }
+}

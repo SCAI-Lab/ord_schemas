@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Butterworth Filter",
+    "description": "This schema represents the parameters of a Butterworth filter applied to a signal.",
+    "type": "object",
+
+    "properties": {
+        "cutoff_frequency": {
+            "description": "Cutoff frequency, in Hz",
+            "type": "number"
+        },
+        "order": {
+            "description": "Filter order",
+            "type": "integer"
+        },
+        "sampling_rate": {
+            "description": "Sampling rate, in Hz",
+            "type": "number"
+        },
+        "zero_phase": {
+            "description": "True if using a filtfilt-style bidirectional filter",
+            "type": "boolean"
+        }
+    },
+
+    "required": [
+        "cutoff_frequency",
+        "order",
+        "sampling_rate"
+    ]
+}

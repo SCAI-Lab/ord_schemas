@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Savitzky-Golay Filter",
+    "description": "This schema represents the parameters of a Savitzky-Golay filter applied to a signal.",
+    "type": "object",
+
+    "properties": {
+        "window_length": {
+            "description": "Length of the filter window, in samples. Must be odd.",
+            "type": "integer"
+        },
+        "polyorder": {
+            "description": "Order of the polynomial used to fit the samples",
+            "type": "integer"
+        },
+        "sampling_rate": {
+            "description": "Sampling rate, in Hz",
+            "type": "number"
+        }
+    },
+
+    "required": [
+        "window_length",
+        "polyorder",
+        "sampling_rate"
+    ]
+}
