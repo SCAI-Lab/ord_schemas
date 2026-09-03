@@ -1,0 +1,99 @@
+{
+    "header": {
+        "uuid": "8fbc23da-6a9f-4d9d-b9ad-fb3410f7a8cb",
+        "schema_id": {
+            "namespace": "org.example.eda",
+            "name": "eda-lead",
+            "version": "1.0"
+        },
+        "source_creation_date_time": "2025-07-04T13:50:00Z",
+        "modality": "sensed",
+        "acquisition_rate": {
+            "value": 4,
+            "unit": "Hz"
+        },
+        "device_identity": {
+            "device_manufacturer": "BioSense Ltd.",
+            "device_name": "GSR-WristBand-X",
+            "device_type": "wearable",
+            "device_serial_number": "BS-EDA-00042"
+        },
+        "environmental_requirements": {
+            "battery_level": {
+                "value": 78,
+                "unit": "%"
+            },
+            "minimal_operation_temperature": {
+                "value": -10,
+                "unit": "°C"
+            },
+            "maximal_operation_temperature": {
+                "value": 50,
+                "unit": "°C"
+            },
+            "maximal_relative_humidity": {
+                "value": 95,
+                "unit": "%"
+            },
+            "minimal_atmospheric_pressure": {
+                "value": 0.8,
+                "unit": "atm"
+            },
+            "maximal_atmospheric_pressure": {
+                "value": 1.2,
+                "unit": "atm"
+            }
+        },
+        "measurement_specs": {
+            "measuring_unit": "Micro Siemens",
+            "sampling_frequency_hz": 4,
+            "resolution": 0.1,
+            "accuracy": 0.95,
+            "max_range": 100,
+            "min_range": 0
+        },
+        "ecg_info": {
+            "sampling_frequency": {
+                "value": 4,
+                "unit": "Hz"
+            },
+            "window_size_samples": 60,
+            "quality_window_size_samples": 15,
+            "units": "Micro Siemens",
+            "gain": 1.0,
+            "adc_resolution": 12,
+            "electrode_placement": [
+                "Wrist"
+            ],
+            "electrode_type": "Surface",
+            "measuring_technique": "Exosomatic",
+            "current_form": "DC"
+        }
+    },
+    "body": {
+        "session_id": "session-eda-20250704-001",
+        "sample_size": 60,
+        "scl": [
+            2.1, 2.2, 2.25, 2.3, 2.35, 2.4, 2.45, 2.5, 2.55, 2.6,
+            2.62, 2.63, 2.65, 2.68, 2.7, 2.73, 2.76, 2.78, 2.8, 2.82
+        ],
+        "scr": [
+            0.2, 0.18, 0.22, 0.15, 0.1, 0.08, 0.05, 0.03, 0.01, 0.0,
+            0.01, 0.02, 0.04, 0.05, 0.07, 0.1, 0.12, 0.13, 0.14, 0.15
+        ],
+        "eda": [
+            2.3, 2.38, 2.47, 2.45, 2.45, 2.48, 2.5, 2.53, 2.56, 2.6,
+            2.63, 2.65, 2.69, 2.73, 2.77, 2.83, 2.88, 2.91, 2.94, 2.97
+        ],
+        "signal_quality": [
+            1, 0.98, 0.97, 0.99, 0.96, 0.95, 0.94, 0.93, 0.92, 0.91,
+            0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.98, 0.99, 1.0
+        ],
+        "effective_time_frame": {
+            "time_interval": {
+                "start_date_time": "2025-07-04T13:50:00Z",
+                "end_date_time": "2025-07-04T13:50:15Z"
+            }
+        }
+    }
+}

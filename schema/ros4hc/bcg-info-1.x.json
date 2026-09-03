@@ -6,71 +6,57 @@
     "description": "This schema represents a bcg data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
-        "header": {
+        "sensor_device_header": {
             "$ref": "sensor-device-header-1.x.json"
-        },
-        
-        "bcg_body": {
-            "$ref": "bcg-1.x.json"
-        },
-
-        "filter_base": {
-            "$ref": "filter-base-1.x.json"
         }
     },
 
-
-    "properties": {
-        "header": {
-            "description": "The header of the data point.",
-            "type":"object",
-            "allOf": [
-                {"$ref": "#/definitions/header"},
-                {
+    "allOf": [
+        {"$ref": "#/definitions/sensor_device_header"},
+        {
+            "type": "object",
+            "properties": {
+                "sensor_configuration": {
                     "type": "object",
                     "properties": {
-                        "bcg_info": {
-                            "type": "object",
-                            "properties": {
-                                "number_of_sensors": {
-                                    "type": "number"
-                                },
 
-                                "sensor_locations": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
+                        "sensor_placement": {
+                            "description": "Sensor Placements",
+                            "type": "string",
+                            "enum": [
+                                "Unknown", "Chest", "Back", "Mattress", "Chair", "Feet", "Wrist", "Arm", "Desk", "Clothing", "Custom"
+                            ]
+                        },
 
-                                "sensing_direction": {
-                                    "type": "string"
-                                },
+                        "sensing_direction": {
+                            "description": "Axis along which BCG is measured",
+                            "type": "string",
+                            "enum": [
+                                "Dorso Ventral", "Longitudinal", "Medio Lateral", "Unknown"
+                            ]
+                        },
 
-                                "sensing_modality": {
-                                    "type": "string"
-                                },
+                        "sensing_modality": {
+                            "description": "Type of Sensor used",
+                            "type": "string",
+                            "enum": [
+                                "Piezoelectric Film", "Forceplate", "Accelerometer", "Piezoelectric crystal", "Unknown"
+                            ]
+                        },
 
-                                "measurement_system": {
-                                    "type": "string"
-                                },
-
-                                "filters": {
-                                    "$ref": "#/definitions/filter_base"
-                                }
-                            }
+                        "measurement_system": {
+                            "description": "System Type",
+                            "type": "string",
+                            "enum": [
+                                "Starr", "Nickerson", "Dock", "Other", "Unknown"
+                            ]
                         }
-                    }
+                    },
+                    "required": [
+                        "sensor_placement"
+                    ]
                 }
-            ]
-        },
-        "body": {
-            "$ref": "#/definitions/bcg_body"
+            }
         }
-    },
-
-    "required": [
-        "header",
-        "body"
     ]
 }

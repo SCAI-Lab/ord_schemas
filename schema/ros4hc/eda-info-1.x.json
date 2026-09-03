@@ -1,6 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
 
+<<<<<<< HEAD:schema/ros4hc/eda-info-1.x.json
     "title": "EDA Data Series",
     "type": "object",
     "description": "This schema represents an eda data series, i.e., an array of measures that share the same header.",
@@ -84,4 +85,60 @@
         "header",
         "body"
     ]
+=======
+    "title": "EdaInfo Data Series",
+    "type": "object",
+    "description": "This schema represents a eda data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "sensor_device_header": {
+            "$ref": "sensor-device-header-1.x.json"
+        }
+    },
+
+
+    "allOf": [
+        {"$ref": "#/definitions/sensor_device_header"},
+        {
+            "type": "object",
+            "properties": {
+                "electrode_configuration": {
+                    "type": "object",
+                    "properties": {
+                        "electrode_placement": {
+                            "description": "Support multiple electrode placements",
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "Unknown", "Palm", "Fingertip", "Wrist", "Forearm", "Sole", "Shoulder", "Custom"
+                                ]
+                            }
+                        },
+
+                        "electrode_type": {
+                            "type": "string",
+                            "enum": ["Unknown", "Surface", "Intracutaneous", "Custom"]
+                        },
+
+                        "measuring_technique": {
+                            "type": "string",
+                            "enum": ["Unknown", "Endosomatic", "Exosomatic", "Custom"]
+                        },
+
+                        "current_form": {
+                            "type": "string",
+                            "enum": ["Unknown", "DC", "AC"]
+                        }
+                    },
+
+                    "required": [
+                        "electrode_placement"
+                    ]
+                }
+            }
+        }
+    ]
+
+>>>>>>> main:ord_schemas/schema/ros4hc/eda-info-1.x.json
 }

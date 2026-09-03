@@ -6,61 +6,50 @@
     "description": "This schema represents a ecg data series, i.e., an array of measures that share the same header.",
 
     "definitions": {
-        "header": {
+        "sensor_device_header": {
             "$ref": "sensor-device-header-1.x.json"
-        },
-        
-        "ecg_body": {
-            "$ref": "ecg-lead-1.x.json"
-        },
-
-        "lead_location_enum": {
-            "$ref": "lead-location-1.x.json"
-        },
-
-        "filter_base": {
-            "$ref": "filter-base-1.x.json"
         }
     },
 
 
-    "properties": {
-        "header": {
-            "description": "The header of the data point.",
-            "type":"object",
-            "allOf": [
-                {"$ref": "#/definitions/header"},
-                {
+    "allOf": [
+        {"$ref": "#/definitions/sensor_device_header"},
+        {
+            "type": "object",
+            "properties": {
+                "electrode_configuration": {
                     "type": "object",
                     "properties": {
-                        "ecg_info": {
-                            "type": "object",
-                            "properties": {
-                                "lead_number": {
-                                    "type": "number"
-                                },
 
-                                "location_lead": {
-                                    "$ref": "#/definitions/lead_location_enum"
-                                },
-
-                                "filters": {
-                                    "$ref": "#/definitions/filter_base"
-                                }
+                        "electrode_placement": {
+                            "description": "Support multiple electrode placements",
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "Unknown", "Placement Limb", "Wrist Ankle", "Chest", "Torso", "Abdomen", "Back", "Ear", "Neck", "Left Arm", "Right Arm", "Left Leg", "Right Leg", "Custom"
+                                ]
                             }
+                        },
+
+                        "lead_type": {
+                            "description": "Standard ECG lead names according to clinical conventions (12-lead and extended leads).",
+                            "url": "https://en.wikipedia.org/wiki/Electrocardiography#12-lead_ECG",
+                            "type": "string",
+                            "enum": [
+                                "I", "II", "III", 
+                                "aVR", "aVL", "aVF",
+                                "V1", "V2", "V3", "V4", "V5", "V6",
+                                "Unknown", "Custom"
+                            ]
                         }
-                    }
+                    },
+
+                    "required": [
+                        "electrode_placement"
+                    ]
                 }
-            ]
-        },
-
-        "body": {
-            "$ref": "#/definitions/ecg_body"
+            }
         }
-    },
-
-    "required": [
-        "header",
-        "body"
     ]
 }

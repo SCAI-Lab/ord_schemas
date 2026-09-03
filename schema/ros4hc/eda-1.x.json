@@ -1,9 +1,15 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "EDA Data",
+<<<<<<< HEAD:schema/ros4hc/eda-1.x.json
     "description": "This schema represents electrodermal activity (EDA) waveform data with signal quality and temporal context",
     "type": "object",
 
+=======
+    "description": "This schema represents eda waveform data",
+    "type": "object",
+    
+>>>>>>> main:ord_schemas/schema/ros4hc/eda-1.x.json
     "definitions": {
         "time_frame": {
             "$ref": "time-frame-1.0.json"
@@ -14,20 +20,44 @@
     },
 
     "properties": {
+<<<<<<< HEAD:schema/ros4hc/eda-1.x.json
         "scl": {
             "description": "Skin Conductance Level (tonic component). Empty if not provided by the device.",
+=======
+        "session_id": {
+            "description": "match EdaInfo's session_id (if used)",
+            "type": "string"
+        },
+
+        "sample_size": {
+            "type": "integer"
+        },
+
+        "scl": {
+            "description": "Skin Conductance Level (tonic)",
+>>>>>>> main:ord_schemas/schema/ros4hc/eda-1.x.json
             "type": "array",
             "items": {
                 "type": "number"
             }
         },
+<<<<<<< HEAD:schema/ros4hc/eda-1.x.json
         "scr": {
             "description": "Skin Conductance Response (phasic component). Empty if not provided by the device.",
+=======
+
+        "scr": {
+            "description": "Skin Conductance Response (phasic)",
+>>>>>>> main:ord_schemas/schema/ros4hc/eda-1.x.json
             "type": "array",
             "items": {
                 "type": "number"
             }
         },
+<<<<<<< HEAD:schema/ros4hc/eda-1.x.json
+=======
+
+>>>>>>> main:ord_schemas/schema/ros4hc/eda-1.x.json
         "eda": {
             "description": "Sum of signals (scl + scr)",
             "type": "array",
@@ -35,6 +65,7 @@
                 "type": "number"
             }
         },
+<<<<<<< HEAD:schema/ros4hc/eda-1.x.json
         "signal_quality": {
             "description": "Signal quality score, from 0 (poor) to 1 (excellent)",
             "type": "array",
@@ -68,3 +99,29 @@
         "effective_time_frame"
     ]
 }
+=======
+
+        "signal_quality": {
+            "description": "From 0 (poor) to 1 [%]",
+            "type": "array",
+            "items": {
+                "type": "number",
+                "maximum": 1,
+                "minimum": 0
+            }
+        },
+
+        "effective_time_frame": {
+            "description": "The time interval at which, or time interval during which the measurement is asserted as being valid.",
+            "$ref": "#/definitions/time_frame"
+        }
+    },
+    "required": [
+        "scl",
+        "scr",
+        "eda",
+        "signal_quality",
+        "effective_time_frame"
+    ]
+}
+>>>>>>> main:ord_schemas/schema/ros4hc/eda-1.x.json

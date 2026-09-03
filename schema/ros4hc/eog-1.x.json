@@ -1,7 +1,11 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "EOG Data",
+<<<<<<< HEAD:schema/ros4hc/eog-1.x.json
     "description": "This schema represents EOG waveform data with signal quality and temporal context",
+=======
+    "description": "This schema represents EOG waveform segments with associated signal quality and recording timestamps.",
+>>>>>>> main:ord_schemas/schema/ros4hc/eog-1.x.json
     "type": "object",
 
     "definitions": {
@@ -14,13 +18,32 @@
     },
 
     "properties": {
+<<<<<<< HEAD:schema/ros4hc/eog-1.x.json
         "eog": {
             "description": "Raw or filtered EOG values [channel]x[sample]",
+=======
+        "session_id": {
+            "description": "match EOGInfo's session_id (if used)",
+            "type": "string"
+        },
+
+        "channel_size": {
+            "type": "integer"
+        },
+
+        "sample_size": {
+            "type": "integer"
+        },
+        
+        "eog": {
+            "description": "Raw or filtered EOG values",
+>>>>>>> main:ord_schemas/schema/ros4hc/eog-1.x.json
             "type": "array",
             "items": {
                 "type": "number"
             }
         },
+<<<<<<< HEAD:schema/ros4hc/eog-1.x.json
         "signal_quality": {
             "description": "Signal quality score, from 0 (poor) to 1 (excellent)",
             "type": "array",
@@ -51,6 +74,28 @@
     "required": [
         "eog",
         "unit",
+=======
+
+        "signal_quality": {
+            "description": "From 0 (poor) to 1 [%]",
+            "type": "array",
+            "items": {
+                "type": "number",
+                "maximum": 1,
+                "minimum": 0
+            }
+        },
+
+        "effective_time_frame": {
+            "description": "The time interval at which, or time interval during which the measurement is asserted as being valid.",
+            "$ref": "#/definitions/time_frame"
+        }
+    },
+
+    "required": [
+        "eog", 
+        "signal_quality", 
+>>>>>>> main:ord_schemas/schema/ros4hc/eog-1.x.json
         "effective_time_frame"
     ]
 }

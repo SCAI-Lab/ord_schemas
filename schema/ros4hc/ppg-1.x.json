@@ -1,9 +1,15 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "PPG Data",
+<<<<<<< HEAD:schema/ros4hc/ppg-1.x.json
     "description": "This schema represents photoplethysmography (PPG) waveform data with signal quality and temporal context",
     "type": "object",
 
+=======
+    "description": "This schema represents PPG waveform data from a specific lead with signal quality and temporal context",
+    "type": "object",
+    
+>>>>>>> main:ord_schemas/schema/ros4hc/ppg-1.x.json
     "definitions": {
         "time_frame": {
             "$ref": "time-frame-1.0.json"
@@ -14,6 +20,7 @@
     },
 
     "properties": {
+<<<<<<< HEAD:schema/ros4hc/ppg-1.x.json
         "ac_component": {
             "description": "AC component of the signal, [samples]x[wavelengths]. Each sample may have one value per wavelength.",
             "type": "array",
@@ -30,11 +37,39 @@
         },
         "ppg": {
             "description": "Raw or filtered PPG signal, [samples]x[wavelengths]",
+=======
+        "session_id": {
+            "description": "match PPGInfo's session_id (if used)",
+            "type": "string"
+        },
+
+        "sample_size": {
+            "type": "integer"
+        },
+
+        "wavelength_size": {
+            "type": "integer"
+        },
+
+        "ac_component": {
+            "description": "# [samples]×[wavelengths]",
+            "type": "number"
+        },
+
+        "dc_component" : {
+            "description": "# [samples]×[wavelengths]",
+            "type": "number"
+        },
+
+        "ppg": {
+            "description": "Raw or filtered PPF values",
+>>>>>>> main:ord_schemas/schema/ros4hc/ppg-1.x.json
             "type": "array",
             "items": {
                 "type": "number"
             }
         },
+<<<<<<< HEAD:schema/ros4hc/ppg-1.x.json
         "signal_quality": {
             "description": "Signal quality score, from 0 (poor) to 1 (excellent)",
             "type": "array",
@@ -60,11 +95,34 @@
                     ]
                 }
             ]
+=======
+
+        "signal_quality": {
+            "description": "From 0 (poor) to 1 [%]",
+            "type": "array",
+            "items": {
+                "type": "number",
+                "maximum": 1,
+                "minimum": 0
+            }
+        },
+
+        "effective_time_frame": {
+            "description": "The time interval at which, or time interval during which the measurement is asserted as being valid.",
+            "$ref": "#/definitions/time_frame"
+>>>>>>> main:ord_schemas/schema/ros4hc/ppg-1.x.json
         }
     },
     "required": [
         "ppg",
+<<<<<<< HEAD:schema/ros4hc/ppg-1.x.json
         "unit",
         "effective_time_frame"
     ]
 }
+=======
+        "signal_quality",
+        "effective_time_frame"
+    ]
+}
+>>>>>>> main:ord_schemas/schema/ros4hc/ppg-1.x.json

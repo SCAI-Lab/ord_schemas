@@ -1,6 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
 
+<<<<<<< HEAD:schema/ros4hc/eog-info-1.x.json
     "title": "EOG Data Series",
     "type": "object",
     "description": "This schema represents an eog data series, i.e., an array of measures that share the same header.",
@@ -98,5 +99,93 @@
     "required": [
         "header",
         "body"
+=======
+    "title": "EOGInfo Data Series",
+    "type": "object",
+    "description": "This schema represents a eog data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "sensor_device_header": {
+            "$ref": "sensor-device-header-1.x.json"
+        },
+        "unit_value": {
+            "$ref": "unit-value-1.0.json"
+        }
+    },
+
+
+    "allOf": [
+        {"$ref": "#/definitions/sensor_device_header"},
+
+        {
+            "type": "object",
+            "properties": {
+                "electrode_configuration": {
+                    "type": "object",
+                    "properties": {
+
+                        "electrode_placement": {
+                            "description": "Support multiple electrode placements",
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": ["Unknown", "Left Eye", "Right Eye", "Forehead", "Temple Left", "Temple Right", "Above Eye", "Below Eye", "Custom"]
+                            }
+                        },
+
+                        "lead_type": {
+                            "type": "string",
+                            "enum": ["Unknown", "Bipolar Horizontal", "Bipolar Vertical", "Unipolar", "Corneal Retinal", "Custom"]
+                        },
+
+                        "signal_mode": {
+                            "type": "string",
+                            "enum": ["Unknown", "Surface", "Bipolar", "Unipolar", "Corneal Retinal", "Intracular", "Derived", "Custom"]
+                        }
+                    },
+                    "required": [
+                        "electrode_placement"
+                    ]
+                },
+                "lightning_condition":{
+                    "type": "object",
+                    "properties": {
+                        "lightsource": {
+                            "type": "string",
+                            "enum": ["Unknown", "Tungsten", "Halogen", "LED", "Fluorescent", "Sunlight", "Custom"]
+                        },
+
+                        "gazefield": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/unit_value"
+                                },
+                                { 
+                                    "type": "object",
+                                    "properties": {
+                                        "unit": {
+                                            "enum": [
+                                                "cd/m^2"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+
+                        "light_dark_phase" : {
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            }
+                        }
+                    },
+                    "required": [
+                        "lightsource"
+                    ]
+                }
+            }
+        }
+>>>>>>> main:ord_schemas/schema/ros4hc/eog-info-1.x.json
     ]
 }

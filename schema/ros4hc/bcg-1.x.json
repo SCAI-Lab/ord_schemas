@@ -14,37 +14,41 @@
     },
 
     "properties": {
-        "bcg_sensor_readings": {
-            "description": "BCG waveform segments",
+        "session_id": {
+            "description": "match BCGInfo's session_id (if used)",
+            "type": "string"
+        },
+
+        "sample_size": {
+            "type": "integer"
+        },
+
+        "bcg": {
+            "description": "Raw or filtered BCG values",
             "type": "array",
             "items": {
                 "type": "number"
             }
         },
-        "unit": {
-            "type": "string",
-            "enum": ["mV", "uV", "V"]
+
+        "signal_quality": {
+            "description": "From 0 (poor) to 1 [%]",
+            "type": "array",
+            "items": {
+                "type": "number",
+                "maximum": 1,
+                "minimum": 0
+            }
         },
-        "error_message": {
-            "type": "string"
-        },
+
         "effective_time_frame": {
             "description": "The time interval at which, or time interval during which the measurement is asserted as being valid.",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/time_frame"
-                },
-                {
-                    "required": [
-                        "time_interval"
-                    ]
-                }
-            ]
+            "$ref": "#/definitions/time_frame"
         }
     },
     "required": [
-        "bcg_sensor_readings",
-        "unit",
+        "session_id",
+        "bcg",
         "effective_time_frame"
     ]
 }

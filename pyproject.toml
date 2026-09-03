@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ord-schemas"
+version = "0.1.0"
+description = "Open Reaction Database JSON OMH schemas"
+authors = [{ name = "OMH Community & SCAI-Lab" }]
+readme = "README.md"
+requires-python = ">=3.8"
+
+[tool.setuptools]
+packages = ["ord_schemas", "ord_schemas.schema"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"ord_schemas.schema" = ["**/*.json"]

@@ -1,0 +1,57 @@
+{
+  "header": {
+    "uuid": "8c1a3d6e-0f3d-4b62-b2c3-8c7a39eae5d7",
+    "schema_id": {
+      "name": "ppg-data-series",
+      "version": "1.0.0"
+    },
+    "source_creation_date_time": "2025-07-04T08:45:00Z",
+    "modality": "sensed",
+    "acquisition_rate": {
+      "value": 250,
+      "unit": "Hz"
+    },
+    "device_identity": {
+      "device_manufacturer": "PulseTech",
+      "device_name": "PT-3000",
+      "device_type": "Photoplethysmography",
+      "device_serial_number": "PT3K-9928374"
+    },
+    "measurement_specs": {
+      "measuring_unit": "Counts",
+      "sampling_frequency_hz": 250,
+      "resolution": 0.01,
+      "accuracy": 0.98
+    },
+    "ppg_info": {
+      "window_size_samples": 250,
+      "quality_window_size_samples": 25,
+      "units": "Counts",
+      "gain": 1.0,
+      "wavelengths_mm": 940,
+      "sensor_placement": "Finger",
+      "measuring_mode": "Transmissive Absorption"
+    }
+  },
+  "body": {
+    "session_id": "PPG-Session-2025-07-04-A",
+    "sample_size": 250,
+    "wavelength_size": 1,
+    "ac_component": 0.42,
+    "dc_component": 1.87,
+    "ppg": [
+      1.90, 1.92, 1.94, 1.95, 1.96, 1.94, 1.91, 1.88, 1.85, 1.83,
+      1.82, 1.84, 1.87, 1.89, 1.91, 1.93, 1.95, 1.96, 1.95, 1.94,
+      1.93, 1.91, 1.88, 1.85, 1.82, 1.81, 1.83, 1.86, 1.89, 1.92
+    ],
+    "signal_quality": [
+      0.98, 0.97, 0.96, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99, 1.0
+    ],
+    "effective_time_frame": {
+      "time_interval": {
+        "start_time": "2025-07-04T08:45:00Z",
+        "end_time": "2025-07-04T08:45:01Z"
+      }
+    }
+  }
+}

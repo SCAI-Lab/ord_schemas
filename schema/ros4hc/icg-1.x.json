@@ -1,9 +1,15 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "ICG Data",
+<<<<<<< HEAD:schema/ros4hc/icg-1.x.json
     "description": "This schema represents impedance cardiography (ICG) waveform data with signal quality and temporal context",
     "type": "object",
 
+=======
+    "description": "This schema represents ICG waveform data from a specific lead with signal quality and temporal context",
+    "type": "object",
+    
+>>>>>>> main:ord_schemas/schema/ros4hc/icg-1.x.json
     "definitions": {
         "time_frame": {
             "$ref": "time-frame-1.0.json"
@@ -14,6 +20,18 @@
     },
 
     "properties": {
+<<<<<<< HEAD:schema/ros4hc/icg-1.x.json
+=======
+        "session_id": {
+            "description": "match ICGInfo's session_id (if used)",
+            "type": "string"
+        },
+
+        "sample_size": {
+            "type": "integer"
+        },
+
+>>>>>>> main:ord_schemas/schema/ros4hc/icg-1.x.json
         "icg": {
             "description": "Raw or filtered ICG values",
             "type": "array",
@@ -21,6 +39,7 @@
                 "type": "number"
             }
         },
+<<<<<<< HEAD:schema/ros4hc/icg-1.x.json
         "signal_quality": {
             "description": "Signal quality score, from 0 (poor) to 1 (excellent)",
             "type": "array",
@@ -46,11 +65,34 @@
                     ]
                 }
             ]
+=======
+
+        "signal_quality": {
+            "description": "From 0 (poor) to 1 [%]",
+            "type": "array",
+            "items": {
+                "type": "number",
+                "maximum": 1,
+                "minimum": 0
+            }
+        },
+
+        "effective_time_frame": {
+            "description": "The time interval at which, or time interval during which the measurement is asserted as being valid.",
+            "$ref": "#/definitions/time_frame"
+>>>>>>> main:ord_schemas/schema/ros4hc/icg-1.x.json
         }
     },
     "required": [
         "icg",
+<<<<<<< HEAD:schema/ros4hc/icg-1.x.json
         "unit",
         "effective_time_frame"
     ]
 }
+=======
+        "signal_quality",
+        "effective_time_frame"
+    ]
+}
+>>>>>>> main:ord_schemas/schema/ros4hc/icg-1.x.json
