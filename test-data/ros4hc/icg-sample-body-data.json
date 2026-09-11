@@ -1,0 +1,11 @@
+{
+    "icg": [24.1, 23.8, 24.5, 24.9, 24.2],
+    "signal_quality": [0.99, 0.98, 0.99, 1.0, 0.97],
+    "unit": "Ω",
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2025-06-20T08:00:00Z",
+            "end_date_time": "2025-06-20T08:00:01Z"
+        }
+    }
+}

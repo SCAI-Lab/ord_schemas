@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Band-Pass Filter",
+    "description": "This schema represents the parameters of a band-pass filter applied to a signal.",
+    "type": "object",
+
+    "properties": {
+        "low_cutoff_frequency": {
+            "description": "Lower bound of the pass band, in Hz",
+            "type": "number"
+        },
+        "high_cutoff_frequency": {
+            "description": "Upper bound of the pass band, in Hz",
+            "type": "number"
+        },
+        "order": {
+            "description": "Filter order",
+            "type": "integer"
+        },
+        "sampling_rate": {
+            "description": "Sampling rate, in Hz",
+            "type": "number"
+        },
+        "zero_phase": {
+            "description": "Whether a phase-preserving (e.g., forward-backward) filter is used",
+            "type": "boolean"
+        }
+    },
+
+    "required": [
+        "low_cutoff_frequency",
+        "high_cutoff_frequency",
+        "order",
+        "sampling_rate"
+    ]
+}

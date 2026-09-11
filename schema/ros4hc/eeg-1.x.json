@@ -1,7 +1,11 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "EEG Data",
+<<<<<<< HEAD:schema/ros4hc/eeg-1.x.json
+    "description": "This schema represents EEG waveform data with signal quality and temporal context",
+=======
     "description": "This schema represents EEG waveform segments with associated signal quality and recording timestamps.",
+>>>>>>> main:ord_schemas/schema/ros4hc/eeg-1.x.json
     "type": "object",
 
     "definitions": {
@@ -14,6 +18,10 @@
     },
 
     "properties": {
+<<<<<<< HEAD:schema/ros4hc/eeg-1.x.json
+        "eeg": {
+            "description": "Flattened raw or filtered EEG values: length = channel_count * sample_count. Access sample s of channel c as eeg[c * sample_count + s]",
+=======
         "session_id": {
             "description": "match EEGInfo's session_id (if used)",
             "type": "string"
@@ -29,11 +37,44 @@
         
         "eeg": {
             "description": "Raw or filtered EEG values",
+>>>>>>> main:ord_schemas/schema/ros4hc/eeg-1.x.json
             "type": "array",
             "items": {
                 "type": "number"
             }
         },
+<<<<<<< HEAD:schema/ros4hc/eeg-1.x.json
+        "quality": {
+            "description": "Signal quality score, from 0 (poor) to 1 (excellent)",
+            "type": "array",
+            "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+            }
+        },
+        "unit": {
+            "type": "string",
+            "enum": ["µV", "mV", "counts"]
+        },
+        "effective_time_frame": {
+            "description": "The time interval at which, or time interval during which the measurement is asserted as being valid.",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/time_frame"
+                },
+                {
+                    "required": [
+                        "time_interval"
+                    ]
+                }
+            ]
+        }
+    },
+    "required": [
+        "eeg",
+        "unit",
+=======
 
         "signal_quality": {
             "description": "From 0 (poor) to 1 [%]",
@@ -54,6 +95,7 @@
     "required": [
         "eeg", 
         "signal_quality", 
+>>>>>>> main:ord_schemas/schema/ros4hc/eeg-1.x.json
         "effective_time_frame"
     ]
 }

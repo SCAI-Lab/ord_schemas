@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Filter Base",
+    "description": "This schema represents the filter(s) applied to a signal, along with their parameters. If several filters are applied, 'filters' indicates the sequential order in which they were applied.",
+    "type": "object",
+
+    "definitions": {
+        "band_pass_filter": {
+            "$ref": "band-pass-filter-1.x.json"
+        },
+        "butterworth_filter": {
+            "$ref": "butterworth-filter-1.x.json"
+        },
+        "high_pass_filter": {
+            "$ref": "high-pass-filter-1.x.json"
+        },
+        "kalman_filter": {
+            "$ref": "kalman-filter-1.x.json"
+        },
+        "low_pass_filter": {
+            "$ref": "low-pass-filter-1.x.json"
+        },
+        "moving_average_filter": {
+            "$ref": "moving-average-filter-1.x.json"
+        },
+        "notch_filter": {
+            "$ref": "notch-filter-1.x.json"
+        },
+        "savitzky_golay_filter": {
+            "$ref": "savitzky-golay-filter-1.x.json"
+        }
+    },
+
+    "properties": {
+        "filters": {
+            "description": "The sequential order in which the filters below were applied",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "band_pass", "butterworth", "high_pass", "kalman", "low_pass",
+                    "moving_average", "notch", "savitzky_golay", "custom"
+                ]
+            }
+        },
+        "band_pass_filter": {
+            "$ref": "#/definitions/band_pass_filter"
+        },
+        "butterworth_filter": {
+            "$ref": "#/definitions/butterworth_filter"
+        },
+        "high_pass_filter": {
+            "$ref": "#/definitions/high_pass_filter"
+        },
+        "kalman_filter": {
+            "$ref": "#/definitions/kalman_filter"
+        },
+        "low_pass_filter": {
+            "$ref": "#/definitions/low_pass_filter"
+        },
+        "moving_average_filter": {
+            "$ref": "#/definitions/moving_average_filter"
+        },
+        "notch_filter": {
+            "$ref": "#/definitions/notch_filter"
+        },
+        "savitzky_golay_filter": {
+            "$ref": "#/definitions/savitzky_golay_filter"
+        }
+    }
+}

@@ -1,0 +1,131 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+<<<<<<< HEAD:schema/ros4hc/icg-info-1.x.json
+    "title": "ICG Data Series",
+    "type": "object",
+    "description": "This schema represents an icg data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "header": {
+            "$ref": "sensor-device-header-1.x.json"
+        },
+
+        "icg_body": {
+            "$ref": "icg-1.x.json"
+        },
+
+        "filter_base": {
+            "$ref": "filter-base-1.x.json"
+        }
+    },
+
+    "properties": {
+        "header": {
+            "description": "The header of the data point.",
+            "type": "object",
+            "allOf": [
+                {"$ref": "#/definitions/header"},
+                {
+                    "type": "object",
+                    "properties": {
+                        "icg_info": {
+                            "type": "object",
+                            "properties": {
+                                "lead_type": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "transthoracic", "four_electrode", "six_electrode", "spot", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "electrode_placement": {
+                                    "description": "Support multiple placements",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "chest", "back", "left_arm", "right_arm", "left_leg", "right_leg",
+                                            "neck", "abdomen", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "technique": {
+                                    "type": "string",
+                                    "enum": [
+                                        "tetrapolar", "octapolar", "custom"
+                                    ]
+                                },
+
+                                "filters": {
+                                    "$ref": "#/definitions/filter_base"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "body": {
+            "$ref": "#/definitions/icg_body"
+        }
+    },
+
+    "required": [
+        "header",
+        "body"
+=======
+    "title": "ICGInfo Data Series",
+    "type": "object",
+    "description": "This schema represents a icg data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "sensor_device_header": {
+            "$ref": "sensor-device-header-1.x.json"
+        }
+    },
+
+
+    "allOf": [
+        {"$ref": "#/definitions/sensor_device_header"},
+
+        {
+            "type": "object",
+            "properties": {
+                "electrode_configuration": {
+                    "type": "object",
+                    "properties": {
+
+                        "electrode_placement": {
+                            "description": "Support multiple electrode placements",
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": ["Unknown", "Chest", "Back", "Left Arm", "Right Arm", "Left Leg", "Right Leg", "Neck", "Abdomen", "Custom"]
+                            }
+                        },
+
+                        "lead_type": {
+                            "type": "string",
+                            "enum": ["Unknown", "Transthoracic", "Four Electrode", "Six Electrode", "Spot", "Custom"]
+                        },
+
+                        "technique": {
+                            "type": "string",
+                            "enum": ["Unknown", "Tetrapolar", "Octapolar", "Custom"]
+                        }
+                    },
+
+                    "required": [
+                        "electrode_placement"
+                    ]
+                }
+            }
+        }
+>>>>>>> main:ord_schemas/schema/ros4hc/icg-info-1.x.json
+    ]
+}

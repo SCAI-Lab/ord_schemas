@@ -1,7 +1,11 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "EMG Data",
+<<<<<<< HEAD:schema/ros4hc/emg-1.x.json
+    "description": "This schema represents EMG waveform data with signal quality and temporal context",
+=======
     "description": "This schema represents EMG waveform segments with associated signal quality and recording timestamps.",
+>>>>>>> main:ord_schemas/schema/ros4hc/emg-1.x.json
     "type": "object",
 
     "definitions": {
@@ -14,6 +18,10 @@
     },
 
     "properties": {
+<<<<<<< HEAD:schema/ros4hc/emg-1.x.json
+        "emg": {
+            "description": "Raw or filtered EMG values [channel]x[sample]",
+=======
         "session_id": {
             "description": "match EMGInfo's session_id (if used)",
             "type": "string"
@@ -29,11 +37,44 @@
         
         "emg": {
             "description": "Raw or filtered EMG values",
+>>>>>>> main:ord_schemas/schema/ros4hc/emg-1.x.json
             "type": "array",
             "items": {
                 "type": "number"
             }
         },
+<<<<<<< HEAD:schema/ros4hc/emg-1.x.json
+        "signal_quality": {
+            "description": "Signal quality score, from 0 (poor) to 1 (excellent)",
+            "type": "array",
+            "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+            }
+        },
+        "unit": {
+            "type": "string",
+            "enum": ["µV", "mV", "counts"]
+        },
+        "effective_time_frame": {
+            "description": "The time interval at which, or time interval during which the measurement is asserted as being valid.",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/time_frame"
+                },
+                {
+                    "required": [
+                        "time_interval"
+                    ]
+                }
+            ]
+        }
+    },
+    "required": [
+        "emg",
+        "unit",
+=======
 
         "signal_quality": {
             "description": "From 0 (poor) to 1 [%]",
@@ -54,6 +95,7 @@
     "required": [
         "emg", 
         "signal_quality", 
+>>>>>>> main:ord_schemas/schema/ros4hc/emg-1.x.json
         "effective_time_frame"
     ]
 }

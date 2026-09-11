@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Kalman Filter",
+    "description": "This schema represents the parameters of a Kalman filter applied to a signal.",
+    "type": "object",
+
+    "properties": {
+        "process_noise": {
+            "description": "Process noise covariance (Q)",
+            "type": "number"
+        },
+        "measurement_noise": {
+            "description": "Measurement noise covariance (R)",
+            "type": "number"
+        },
+        "initial_estimate": {
+            "type": "number"
+        },
+        "gain": {
+            "description": "Precomputed Kalman gain, if applicable",
+            "type": "number"
+        }
+    },
+
+    "required": [
+        "process_noise",
+        "measurement_noise"
+    ]
+}

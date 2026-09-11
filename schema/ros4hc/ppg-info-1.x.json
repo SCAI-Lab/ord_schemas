@@ -1,0 +1,148 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+<<<<<<< HEAD:schema/ros4hc/ppg-info-1.x.json
+    "title": "PPG Data Series",
+=======
+    "title": "PPGInfo Data Series",
+>>>>>>> main:ord_schemas/schema/ros4hc/ppg-info-1.x.json
+    "type": "object",
+    "description": "This schema represents a ppg data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+<<<<<<< HEAD:schema/ros4hc/ppg-info-1.x.json
+        "header": {
+            "$ref": "sensor-device-header-1.x.json"
+        },
+
+        "ppg_body": {
+            "$ref": "ppg-1.x.json"
+        },
+
+        "filter_base": {
+            "$ref": "filter-base-1.x.json"
+        }
+    },
+
+    "properties": {
+        "header": {
+            "description": "The header of the data point.",
+            "type": "object",
+            "allOf": [
+                {"$ref": "#/definitions/header"},
+                {
+                    "type": "object",
+                    "properties": {
+                        "ppg_info": {
+                            "type": "object",
+                            "description": "If both wavelengths_nm and wavelengths_labels are present, they should be the same length and aligned. If only one is present, downstream tools should fall back accordingly.",
+                            "properties": {
+                                "sensor_placement": {
+                                    "type": "string",
+                                    "enum": [
+                                        "finger", "wrist", "hand", "palm", "forearm", "arm", "earlobe",
+                                        "forehead", "nose", "chest", "ankle", "toe", "sole", "custom"
+                                    ]
+                                },
+
+                                "wavelengths_nm": {
+                                    "description": "Nanometer value for each channel (e.g. [525, 880, 660])",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer"
+                                    }
+                                },
+
+                                "wavelengths_labels": {
+                                    "description": "Label for each channel (optional, compact form)",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "green", "red", "ir", "blue", "yellow", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "measuring_mode": {
+                                    "type": "string",
+                                    "enum": [
+                                        "transmissive_absorption", "reflective", "custom"
+                                    ]
+                                },
+
+                                "filters": {
+                                    "$ref": "#/definitions/filter_base"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "body": {
+            "$ref": "#/definitions/ppg_body"
+        }
+    },
+
+    "required": [
+        "header",
+        "body"
+=======
+        "sensor_device_header": {
+            "$ref": "sensor-device-header-1.x.json"
+        }
+    },
+
+
+   "allOf": [
+        {"$ref": "#/definitions/sensor_device_header"},
+
+        {
+            "type": "object",
+            "properties": {
+                "sensor_configuration": {
+                    "type": "object",
+                    "properties": {
+
+                        "sensor_placement": {
+                            "type": "string",
+                            "enum": ["Unknown", "Finger", "Wrist", "Earlobe", "Forehead", "Toe", "Arm", "Chest", "Ankle", "Nose", "Palm", "Sole", "Custom"]
+                        },
+
+                        "measuring_mode": {
+                            "type": "string",
+                            "enum": ["Unknown", "Transmissive Absorption", "Reflective", "Custom"]
+                        }
+                    },
+
+                    "required": [
+                        "sensor_placement"
+                    ]
+                },
+
+                "waveform_configuration":{
+                    "type": "object",
+                    "properties": {
+                        "wavelengths_mm": {
+                            "description": "Nanometer value for each channel, may be [660, 880, 940]",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        "wavelengths_labels": {
+                            "description": "Wavelength Label for each channel (optional)",
+                            "type": "string",
+                            "enum": ["Unknown", "Green", "Red", "IR", "Blue", "Yellow", "Custom"]
+                        }
+                    },
+                    "required": [
+                        "wavelengths_mm"
+                    ]
+                }
+            }
+        }
+>>>>>>> main:ord_schemas/schema/ros4hc/ppg-info-1.x.json
+    ]
+}

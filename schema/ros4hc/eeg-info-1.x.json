@@ -1,0 +1,199 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+<<<<<<< HEAD:schema/ros4hc/eeg-info-1.x.json
+    "title": "EEG Data Series",
+    "type": "object",
+    "description": "This schema represents an eeg data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "header": {
+            "$ref": "sensor-device-header-1.x.json"
+        },
+
+        "eeg_body": {
+            "$ref": "eeg-1.x.json"
+        },
+
+        "electrode_site_enum": {
+            "type": "string",
+            "enum": [
+                "fp1", "fp2", "f3", "f4", "c3", "c4", "p3", "p4", "o1", "o2",
+                "f7", "f8", "t3", "t4", "t5", "t6", "fz", "cz", "pz", "oz", "custom"
+            ]
+        },
+
+        "filter_base": {
+            "$ref": "filter-base-1.x.json"
+        }
+    },
+
+    "properties": {
+        "header": {
+            "description": "The header of the data point.",
+            "type": "object",
+            "allOf": [
+                {"$ref": "#/definitions/header"},
+                {
+                    "type": "object",
+                    "properties": {
+                        "eeg_info": {
+                            "type": "object",
+                            "properties": {
+                                "channel_size": {
+                                    "type": "integer"
+                                },
+
+                                "selected_preprocessing": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "bandpass", "notch", "ica", "car", "artefact_rej",
+                                            "baseline_corr", "downsample", "segmented", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "montage_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "bipolar", "referential", "average_ref", "laplacian"
+                                    ]
+                                },
+
+                                "bipolar_active_sites": {
+                                    "description": "Only used if montage_type=bipolar; length = channel_count",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/electrode_site_enum"
+                                    }
+                                },
+
+                                "bipolar_reference_sites": {
+                                    "description": "Only used if montage_type=bipolar; length = channel_count",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/electrode_site_enum"
+                                    }
+                                },
+
+                                "reference_sites": {
+                                    "description": "Only used if montage_type=referential or average_ref",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/electrode_site_enum"
+                                    }
+                                },
+
+                                "placement_method": {
+                                    "description": "Support multiple placements",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "10-20", "10-10", "10-5", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "electrode_sites": {
+                                    "description": "One per channel, in the order used in eeg[] data",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/electrode_site_enum"
+                                    }
+                                },
+
+                                "electrode_physical_type": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "agcl", "gold_cup", "dry", "wet", "hydrogel", "microneedle", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "signal_mode": {
+                                    "type": "string",
+                                    "enum": [
+                                        "surface", "intracranial", "custom"
+                                    ]
+                                },
+
+                                "filters": {
+                                    "$ref": "#/definitions/filter_base"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "body": {
+            "$ref": "#/definitions/eeg_body"
+        }
+    },
+
+    "required": [
+        "header",
+        "body"
+=======
+    "title": "EEGInfo Data Series",
+    "type": "object",
+    "description": "This schema represents a eeg data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "sensor_device_header": {
+            "$ref": "sensor-device-header-1.x.json"
+        }
+    },
+
+
+    "allOf": [
+        {"$ref": "#/definitions/sensor_device_header"},
+
+        {
+            "type": "object",
+            "properties": {
+                "electrode_configuration": {
+                    "type": "object",
+                    "properties": {
+
+                        "electrode_placement": {
+                            "description": "Support multiple electrode placements",
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "Unknown", "Method 1020", "Method 1010", "Method 105", "Custom"
+                                ]
+                            }
+                        },
+
+                        "electrode_site": {
+                            "type": "string",
+                            "enum": ["Unknown", "FP1", "FP2", "F3", "F4", "C3", "C4", "P3", "P4", "O1", "O2", "F7", "F8", "T3", "T4", "T5", "T6", "FZ", "CZ", "PZ", "OZ", "Custom"]
+                        },
+
+                        "electrode_physical_type": {
+                            "type": "string",
+                            "enum": ["Unknown", "AgCl", "Gold Cup", "Dry", "Wet", "Hydrogel", "Microneedle", "Custom"]
+                        },
+
+                        "signal_mode": {
+                            "type": "string",
+                            "enum": ["Unknown", "Surface", "Intracranial", "Custom"]
+                        }
+                    },
+
+                    "required": [
+                        "electrode_placement"
+                    ]
+                }
+            }
+        }
+>>>>>>> main:ord_schemas/schema/ros4hc/eeg-info-1.x.json
+    ]
+}

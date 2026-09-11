@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Moving Average Filter",
+    "description": "This schema represents the parameters of a moving average filter applied to a signal.",
+    "type": "object",
+
+    "properties": {
+        "window_size": {
+            "description": "Number of samples in the window",
+            "type": "integer"
+        },
+        "sampling_rate": {
+            "description": "Sampling rate, in Hz",
+            "type": "number"
+        }
+    },
+
+    "required": [
+        "window_size",
+        "sampling_rate"
+    ]
+}

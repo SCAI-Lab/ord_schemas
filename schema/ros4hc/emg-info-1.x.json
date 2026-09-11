@@ -1,0 +1,147 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+<<<<<<< HEAD:schema/ros4hc/emg-info-1.x.json
+    "title": "EMG Data Series",
+    "type": "object",
+    "description": "This schema represents an emg data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "header": {
+            "$ref": "sensor-device-header-1.x.json"
+        },
+
+        "emg_body": {
+            "$ref": "emg-1.x.json"
+        },
+
+        "filter_base": {
+            "$ref": "filter-base-1.x.json"
+        }
+    },
+
+    "properties": {
+        "header": {
+            "description": "The header of the data point.",
+            "type": "object",
+            "allOf": [
+                {"$ref": "#/definitions/header"},
+                {
+                    "type": "object",
+                    "properties": {
+                        "emg_info": {
+                            "type": "object",
+                            "properties": {
+                                "electrode_placement": {
+                                    "description": "Support multiple placements",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "biceps", "triceps", "forearm", "calf", "back", "abdomen",
+                                            "quadriceps", "hamstring", "face", "neck", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "electrode_type": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "surface", "needle", "wire", "interferential", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "external_devices": {
+                                    "description": "External devices used during EMG recording",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "tens", "fes", "emg_trigger", "custom"
+                                        ]
+                                    }
+                                },
+
+                                "signal_mode": {
+                                    "type": "string",
+                                    "enum": [
+                                        "surface", "intramuscular", "custom"
+                                    ]
+                                },
+
+                                "filters": {
+                                    "$ref": "#/definitions/filter_base"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "body": {
+            "$ref": "#/definitions/emg_body"
+        }
+    },
+
+    "required": [
+        "header",
+        "body"
+=======
+    "title": "EMGInfo Data Series",
+    "type": "object",
+    "description": "This schema represents a emg data series, i.e., an array of measures that share the same header.",
+
+    "definitions": {
+        "sensor_device_header": {
+            "$ref": "sensor-device-header-1.x.json"
+        }
+    },
+
+
+    "allOf": [
+        {"$ref": "#/definitions/sensor_device_header"},
+
+        {
+            "type": "object",
+            "properties": {
+                "electrode_configuration": {
+                    "type": "object",
+                    "properties": {
+
+                        "electrode_placement": {
+                            "description": "Support multiple electrode placements",
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": ["Unknown", "Biceps", "Triceps", "Forearm", "Calf", "Back", "Abdomen", "Quadriceps", "Hamstring", "Face", "Neck", "Custom"]
+                            }
+                        },
+
+                        "electrode_type": {
+                            "type": "string",
+                            "enum": ["Unknown", "Surface", "Needle", "Wire", "Interferential", "Custom"]
+                        },
+
+                        "external_device": {
+                            "type": "string",
+                            "enum": ["Unknown", "TENS", "FES", "EMG Trigger", "Custom"]
+                        },
+
+                        "signal_mode": {
+                            "type": "string",
+                            "enum": ["Unknown", "Surface", "Intramuscular", "Custom"]
+                        }
+                    },
+
+                    "required": [
+                        "electrode_placement"
+                    ]
+                }
+            }
+        }
+>>>>>>> main:ord_schemas/schema/ros4hc/emg-info-1.x.json
+    ]
+}

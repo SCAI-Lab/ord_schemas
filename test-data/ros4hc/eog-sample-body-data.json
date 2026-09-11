@@ -1,0 +1,11 @@
+{
+    "eog": [12.4, 13.1, 11.8, 12.9, 13.5, 12.2],
+    "signal_quality": [0.96, 0.95, 0.97, 0.94, 0.98, 0.96],
+    "unit": "µV",
+    "effective_time_frame": {
+        "time_interval": {
+            "start_date_time": "2025-06-20T08:00:00Z",
+            "end_date_time": "2025-06-20T08:00:01Z"
+        }
+    }
+}
